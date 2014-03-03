@@ -1,0 +1,35 @@
+\ProvidesPackage{beamerouterthemeheadinfoline}
+
+\mode<presentation>
+
+\defbeamertemplate*{headline}{head infoline theme}
+{%
+    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
+    \end{beamercolorbox}%
+    \hbox{%
+    \begin{beamercolorbox}[wd=0.333333\paperwidth,ht=2.5ex,dp=1.125ex,%
+      center]{title in head/foot}
+      \usebeamerfont{title in head/foot}%
+      \insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.333333\paperwidth,ht=2.5ex,dp=1.125ex,%
+      center]{section in head/foot}
+      \usebeamerfont{section in head/foot}%
+      \insertsectionhead
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.333333\paperwidth,ht=2.5ex,dp=1.125ex,%
+      right]{subsection in head/foot}
+      \usebeamerfont{subsection in head/foot}%
+      \insertsubsectionhead%
+      \hfill%
+      \usebeamercolor[fg]{page number in head/foot}%
+      \usebeamerfont{page number in head/foot}%
+      \insertframenumber/\inserttotalframenumber\hspace{0.5em}
+    \end{beamercolorbox}}%
+    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{lower separation line head}
+    \end{beamercolorbox}
+}
+
+  
+\mode
+<all>

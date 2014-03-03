@@ -1,0 +1,81 @@
+% Copyright 2014 by Ryan Volz
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/color/beamercolorthemestanford.sty,v 1.0 2014/02/23 23:51:00 rvolz $
+
+
+\mode<presentation>
+
+% \definecolor{cardinalred}{RGB}{140,21,21}
+% \definecolor{coolgray}{RGB}{77,79,83}
+% primary palette
+\definecolor{cardinalred}{cmyk}{0,1,0.65,0.34}
+\definecolor{coolgray}{cmyk}{0.48,0.36,0.24,0.66}
+% and black
+
+% neutral palette
+\definecolor{lighttan}{cmyk}{0.03,0.12,0.34,0.1}
+\definecolor{neutraltan}{cmyk}{0.07,0.27,0.55,0.22}
+\definecolor{tangray}{cmyk}{0.14,0.18,0.22,0.42}
+\definecolor{neutralgray}{cmyk}{0.08,0.09,0.14,0.24}
+\definecolor{lightredgray}{cmyk}{0.03,0.04,0.14,0.08}
+\definecolor{lightgreengray}{cmyk}{0.12,0.03,0.13,0.08}
+\definecolor{darkbluegray}{cmyk}{0.5,0.28,0.24,0.65}
+\definecolor{darktangray}{cmyk}{0.23,0.29,0.32,0.67}
+
+% deep tone palette
+\definecolor{deepred}{cmyk}{0.23,0.84,0.54,0.68}
+\definecolor{deeporange}{cmyk}{0.10,0.78,1,0.46}
+\definecolor{deepteal}{cmyk}{1,0.12,0.28,0.59}
+\definecolor{deepgreen}{cmyk}{0.83,0.16,0.45,0.54}
+\definecolor{deeppurple}{cmyk}{0.57,0.92,0.12,0.56}
+
+% bright palette
+\definecolor{brightblue}{cmyk}{0.84,0.21,0,0}
+\definecolor{boldblue}{cmyk}{1,0.05,0.2,0.22}
+\definecolor{brightteal}{cmyk}{1,0,0.6,0.03}
+\definecolor{burntorange}{cmyk}{0.05,0.48,0.93,0.23}
+\definecolor{brightorange}{cmyk}{0,0.52,1,0}
+\definecolor{burntyellow}{cmyk}{0,0.27,1,0}
+
+
+% set beamer colors
+\setbeamercolor{alerted text}{fg=brightorange}
+\setbeamercolor{example text}{fg=brightteal}
+
+\setbeamercolor*{structure}{fg=cardinalred,bg=coolgray!10!white}
+\setbeamercolor{local structure}{fg=brightblue}
+
+\setbeamercolor*{section in toc}{parent=local structure}
+
+\setbeamercolor*{palette primary}{parent=structure}
+\setbeamercolor*{palette secondary}{fg=white,bg=tangray}
+\setbeamercolor*{palette tertiary}{fg=neutraltan,bg=darktangray}
+\setbeamercolor*{palette quaternary}{fg=tangray,bg=coolgray}
+
+\setbeamercolor*{sidebar}{parent=structure,bg=coolgray}
+
+\setbeamercolor*{palette sidebar primary}{fg=white}
+\setbeamercolor*{palette sidebar secondary}{fg=neutraltan}
+\setbeamercolor*{palette sidebar tertiary}{fg=tangray}
+\setbeamercolor*{palette sidebar quaternary}{fg=neutralgray}
+
+\setbeamercolor*{titlelike}{fg=cardinalred,bg=neutralgray}
+\setbeamercolor*{frametitle}{parent=titlelike}
+
+\setbeamercolor{block body}{use=structure,bg=structure.bg}
+\setbeamercolor{block body alerted}{bg=brightorange!20!white}
+\setbeamercolor{block body example}{bg=lightgreengray}
+
+\setbeamercolor{block title}{use=titlelike,fg=coolgray,bg=titlelike.bg}
+\setbeamercolor{block title alerted}{use={titlelike,alerted text},fg=coolgray,bg=alerted text.fg!20!titlelike.bg}
+\setbeamercolor{block title example}{use={titlelike,example text},fg=coolgray,bg=example text.fg!20!titlelike.bg}
+
+\mode
+<all>
