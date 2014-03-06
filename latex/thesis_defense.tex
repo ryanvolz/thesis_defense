@@ -159,8 +159,6 @@
 
 % \againframe<3-4>{ionosphere_importance}
 
-\subsection*{Ionospheric Radar}
-
 \begin{frame}{Measuring the ionosphere}
  \begin{definition}
   \alert{Incoherent Scatter Radars} (ISRs, locations shown {\color{red}below}) are radars sensitive enough to measure scattering from electrons in the background ionosphere.
@@ -189,33 +187,7 @@
  \end{textblock}
 \end{frame}
 
-\begin{frame}{Zoo of ionospheric plasma}
- There are many different plasma phenomena, each presenting its own challenges for observation.
- Main challenges depicted in image: separating targets, range-spread targets
- \begin{columns}
-  \column{0.365\textwidth}
-  \begin{itemize}
-   \item Background ionosphere
-   \item {\color{green!80!black}Electrojet}
-   \item {\color{yellow!90!black}Meteor}
-   \item Spread F
-   \item Sporadic E
-   \item Equatorial plumes/bubbles
-   \item "150-km" echoes
-   \item Polar Mesospheric Summer Echoes
-  \end{itemize}
-  \column{0.635\textwidth}
-  \\
-  \begin{beamercolorbox}[center]{example text}
-   Example data from Jicamarca
-  \end{beamercolorbox}
-  \begin{tikzpicture}[thick]
-   \node[above right] at (0,0) {\includegraphics{ejet_head_flare_mf_rti_3}};
-   \draw[green!80!black] (1.225,3.4) rectangle (5.97,4.25);
-   \draw[yellow!90!black] (1.5,2.6) rectangle (5.97,3.375);
-  \end{tikzpicture}
- \end{columns}
-\end{frame}
+\subsection*{Meteoroids and Meteors}
 
 \begin{frame}{Meteors}
  \begin{definition}
@@ -236,6 +208,35 @@
   \end{tikzpicture}
   \vspace*{-0.75em}
  \end{block}
+\end{frame}
+
+\begin{frame}{Zoo of ionospheric plasma}
+ There are many different plasma phenomena, each presenting its own challenges for observation.
+ Main challenges depicted in image: separating targets, range-spread targets
+ \begin{columns}
+  \column{0.365\textwidth}
+  \begin{itemize}
+   \item Background ionosphere
+   \item {\color{green!80!black}Electrojet}
+   \item {\color{yellow!90!black}Meteor}
+   \item Spread F
+   \item Sporadic E
+   \item Equatorial plumes/bubbles
+   \item "150-km" echoes
+   \item Polar Mesospheric Summer Echoes
+  \end{itemize}
+  \column{0.635\textwidth}
+  \\
+  \begin{beamercolorbox}[center]{example text}
+   Example data from Jicamarca
+  \end{beamercolorbox}
+  \vspace{-1.5ex}
+  \begin{tikzpicture}[thick]
+   \node[above right] at (0,0) {\includegraphics{ejet_head_flare_mf_rti_3}};
+   \draw[green!80!black] (1.225,3.4) rectangle (5.97,4.25);
+   \draw[yellow!90!black] (1.5,2.6) rectangle (5.97,3.375);
+  \end{tikzpicture}
+ \end{columns}
 \end{frame}
 
 \begin{frame}{Competing demands on radar measurements}

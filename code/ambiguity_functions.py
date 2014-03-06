@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 
 import echolect as el
 
-params = {#'figure.figsize': (9.4, 5.4),
-          #'figure.subplot.left': 0.01,
+params = {#'figure.subplot.left': 0.01,
           #'figure.subplot.bottom': 0.01,
           #'figure.subplot.right': .99,
           #'figure.subplot.top': .99,
@@ -22,8 +21,11 @@ params = {#'figure.figsize': (9.4, 5.4),
           'legend.fontsize': 10,
           'xtick.labelsize': 8,
           'ytick.labelsize': 8,
-          'lines.markersize': 4,
+          'lines.markersize': 1,
           'lines.linewidth': 0.45,
+          'axes.linewidth': 0.45,
+          'xtick.major.size': 2,
+          'ytick.major.size': 2,
           'text.usetex': False}
           #'text.latex.preamble': ['\usepackage{amsmath}']}
 plt.rcParams.update(params)
@@ -64,25 +66,25 @@ def plotter(z, x, y, pixelaspect, **kwargs):
 plotter(np.fft.fftshift(uncamb, axes=0), f, d13, pixelaspect=16, 
         xlabel='Normalized Frequency', ylabel='Delay (samples)', 
         clabel='Relative Magnitude', exact_ticks=False, xbins=6, ybins=6)
-plt.savefig('ambiguity_uncoded.png', dpi=savedpi, bbox_inches='tight', 
-            pad_inches=0.01, transparent=True)
+plt.savefig('ambiguity_uncoded.pdf', dpi=savedpi, bbox_inches='tight', 
+            pad_inches=0.025, transparent=True)
 
 plotter(np.fft.fftshift(b13amb, axes=0), f, d13, pixelaspect=16, 
         xlabel='Normalized Frequency', ylabel='Delay (samples)', 
         clabel='Relative Magnitude', exact_ticks=False, xbins=6, ybins=6)
-plt.savefig('ambiguity_barker13.png', dpi=savedpi, bbox_inches='tight', 
-            pad_inches=0.01, transparent=True)
+plt.savefig('ambiguity_barker13.pdf', dpi=savedpi, bbox_inches='tight', 
+            pad_inches=0.025, transparent=True)
 
 plotter(np.fft.fftshift(mslamb, axes=0), f, d51, pixelaspect=10, 
         xlabel='Normalized Frequency', ylabel='Delay (samples)', 
         clabel='Relative Magnitude', exact_ticks=False, xbins=6, ybins=6)
-plt.savefig('ambiguity_msl.png', dpi=savedpi, bbox_inches='tight', 
-            pad_inches=0.01, transparent=True)
+plt.savefig('ambiguity_msl.pdf', dpi=savedpi, bbox_inches='tight', 
+            pad_inches=0.025, transparent=True)
 
 plotter(np.fft.fftshift(lfmamb, axes=0), f, d51, pixelaspect=10, 
         xlabel='Normalized Frequency', ylabel='Delay (samples)', 
         clabel='Relative Magnitude', exact_ticks=False, xbins=6, ybins=6)
-plt.savefig('ambiguity_lfm.png', dpi=savedpi, bbox_inches='tight', 
-            pad_inches=0.01, transparent=True)
+plt.savefig('ambiguity_lfm.pdf', dpi=savedpi, bbox_inches='tight', 
+            pad_inches=0.025, transparent=True)
 
 #plt.show()

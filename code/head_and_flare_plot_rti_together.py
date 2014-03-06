@@ -124,7 +124,7 @@ with open(basefilename + '_mf.pkl', 'rb') as f:
     mf = cPickle.load(f)
 
 dpi = 75*4 # should be sized to match font size
-savedpi = dpi*4 # should be a multiple of dpi
+savedpi = dpi*1 # should be a multiple of dpi
 pixelaspect = 4
 
 basedir = 'figures'
@@ -141,7 +141,7 @@ fig = plot_block(20*np.log10(np.abs(mf.vlt[:, rslc])/mf.noise_sigma),
                  dpi=dpi, pixelaspect=pixelaspect, 
                  vmin=0, vmax=40, 
                  csize=0.0625, cpad=0.05)
-fpath = os.path.join(basedir, basefilename + '_mf_rti_block.png')
+fpath = os.path.join(basedir, basefilename + '_mf_rti_block.pdf')
 fig.savefig(fpath, dpi=savedpi, bbox_inches='tight', pad_inches=0, transparent=True)
 plt.close(fig)
 

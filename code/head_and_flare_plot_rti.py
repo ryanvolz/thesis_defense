@@ -24,8 +24,11 @@ params = {#'figure.subplot.left': 0.01,
           'legend.fontsize': 10,
           'xtick.labelsize': 8,
           'ytick.labelsize': 8,
-          'lines.markersize': 4,
+          'lines.markersize': 1,
           'lines.linewidth': 0.45,
+          'axes.linewidth': 0.45,
+          'xtick.major.size': 2,
+          'ytick.major.size': 2,
           'text.usetex': False}
           #'text.latex.preamble': ['\usepackage{amsmath}']}
 plt.rcParams.update(params)
@@ -38,7 +41,7 @@ with open(basefilename + '_mf.pkl', 'rb') as f:
     mf = cPickle.load(f)
 
 dpi = 75 # should be sized to match font size
-savedpi = dpi*4 # should be a multiple of dpi
+savedpi = dpi*1 # should be a multiple of dpi
 def plotter(z, t, r, **kwargs):
     xinches = len(t)/float(dpi)
     yinches = len(r)/float(dpi)
@@ -63,7 +66,7 @@ for pslc in [slice(0, None, 5), slice(1, None, 5), slice(2, None, 5),
                    cs.t[pslc], cs.r[rslc]/1e3, 
                    exact_ticks=False, vmin=0, vmax=40, cmap=cmap,
                    ylabel='Range (km)', clabel='SNR (dB)')
-    path = os.path.join(basedir, basefilename + '_recovered_rti_{0}.png')
+    path = os.path.join(basedir, basefilename + '_recovered_rti_{0}.pdf')
     if pslc.start is not None:
         path = path.format(pslc.start)
     else:
@@ -75,7 +78,7 @@ for pslc in [slice(0, None, 5), slice(1, None, 5), slice(2, None, 5),
                    cs.t[pslc], cs.r[rslc]/1e3, 
                    exact_ticks=False, vmin=0, vmax=40,
                    ylabel='Range (km)', clabel='SNR (dB)')
-    path = os.path.join(basedir, basefilename + '_recovered_noise_{0}.png')
+    path = os.path.join(basedir, basefilename + '_recovered_noise_{0}.pdf')
     if pslc.start is not None:
         path = path.format(pslc.start)
     else:
@@ -87,7 +90,7 @@ for pslc in [slice(0, None, 5), slice(1, None, 5), slice(2, None, 5),
                    cs.t[pslc], cs.r[rslc]/1e3, 
                    exact_ticks=False, vmin=0, vmax=40,
                    ylabel='Range (km)', clabel='SNR (dB)')
-    path = os.path.join(basedir, basefilename + '_recovered_rti_noise_{0}.png')
+    path = os.path.join(basedir, basefilename + '_recovered_rti_noise_{0}.pdf')
     if pslc.start is not None:
         path = path.format(pslc.start)
     else:
@@ -99,7 +102,7 @@ for pslc in [slice(0, None, 5), slice(1, None, 5), slice(2, None, 5),
                    mf.t[pslc], mf.r[rslc]/1e3,
                    exact_ticks=False, vmin=0, vmax=40,
                    ylabel='Range (km)', clabel='SNR (dB)')
-    path = os.path.join(basedir, basefilename + '_mf_rti_{0}.png')
+    path = os.path.join(basedir, basefilename + '_mf_rti_{0}.pdf')
     if pslc.start is not None:
         path = path.format(pslc.start)
     else:
