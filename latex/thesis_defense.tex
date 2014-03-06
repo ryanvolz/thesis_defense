@@ -120,51 +120,44 @@
 \subsection*{The Ionosphere}
 
 \begin{frame}{What is the ionosphere?}
- \includegraphics<1>[width=\textwidth]{atmospheric_regions}
- \includegraphics<2>[width=\textwidth]{atmospheric_regions_with_ionosphere}
- \includegraphics<3>[width=\textwidth]{atmospheric_regions_with_radiation}
- \begin{center}
+ \includegraphics[width=\textwidth]{atmospheric_regions_with_radiation}
+ \begin{flushright}
   \tiny
   Image from NSF (2011), CEDAR: The New Dimension
- \end{center}
+ \end{flushright}
   
- \begin{textblock}{0.47}(0.25,0.48)
-  \visible<2>{
-   \begin{definition}
-    The \alert{ionosphere} is a region of \alert{partially ionized gas (plasma)} that envelops the Earth from an altitude of about 60 km and higher.
-   \end{definition}
-  }
- \end{textblock}
- \begin{textblock}{0.47}(0.25,0.48)
-  \visible<3->{
-   \begin{block}{Mechanism}
-    Ionization is principally caused by solar radiation.
-   \end{block}
-  }
+ \begin{textblock}{0.47}(0.25,0.41)
+  \begin{definition}
+   The \alert{ionosphere} is a region of \alert{partially ionized gas (plasma)} that envelops the Earth from an altitude of about 60 km and higher.
+  \end{definition}
+  \vspace{-1ex}
+  \begin{block}{Mechanism}
+   Ionization is principally caused by solar radiation.
+  \end{block}
  \end{textblock}
 \end{frame}
 
-\begin{frame}<1-2>[label=ionosphere_importance]{Importance of the ionosphere}
- \only<1,3>{
-  \begin{block}<1>{Communications}
-   \begin{itemize}
-    \item Radio waves of lower frequency (less than $\approx 10$\ MHz) reflect off ionosphere.
-    \item Microwave frequencies (e.g. GPS) can pass through, but experience frequency-dependent refraction and delay.
-    \item Plasma irregularities additionally perturb signals.
-   \end{itemize}
-  \end{block}
-  \begin{block}<3>{Coupling between Earth and space}
-   \begin{itemize}
-    \item Space environment (e.g. meteors) can be measured.
-    \item Global processes (e.g. weather) are affected by ionosphere.
-   \end{itemize}
-  \end{block}
- }
- \only<2>{\includegraphics[width=\textwidth]{ionosphere_communications}}
- \only<4>{\includegraphics[height=0.9\textheight]{ionosphereprocesses}}
-\end{frame}
+% \begin{frame}<1-2>[label=ionosphere_importance]{Importance of the ionosphere}
+%  \only<1,3>{
+%   \begin{block}<1>{Communications}
+%    \begin{itemize}
+%     \item Radio waves of lower frequency (less than $\approx 10$\ MHz) reflect off ionosphere.
+%     \item Microwave frequencies (e.g. GPS) can pass through, but experience frequency-dependent refraction and delay.
+%     \item Plasma irregularities additionally perturb signals.
+%    \end{itemize}
+%   \end{block}
+%   \begin{block}<3>{Coupling between Earth and space}
+%    \begin{itemize}
+%     \item Space environment (e.g. meteors) can be measured.
+%     \item Global processes (e.g. weather) are affected by ionosphere.
+%    \end{itemize}
+%   \end{block}
+%  }
+%  \only<2>{\includegraphics[width=\textwidth]{ionosphere_communications}}
+%  \only<4>{\includegraphics[height=0.9\textheight]{ionosphereprocesses}}
+% \end{frame}
 
-\againframe<3-4>{ionosphere_importance}
+% \againframe<3-4>{ionosphere_importance}
 
 \subsection*{Ionospheric Radar}
 
@@ -173,22 +166,32 @@
   \alert{Incoherent Scatter Radars} (ISRs, locations shown {\color{red}below}) are radars sensitive enough to measure scattering from electrons in the background ionosphere.
  \end{definition}
  \includegraphics[width=\textwidth]{isr_map}
- \begin{textblock}{0.5}(0.425,0.475)
+ 
+ \vspace{2ex}
+ Range of ionospheric regions: \onslide<2>{mid-latitude,} \onslide<3>{equatorial,} \onslide<4>{polar.}
+ \begin{textblock}{0.5}(0.425,0.42)
   \only<2>{
   \includegraphics[height=4.75cm]{millstone_hill_radar}\\
   \vspace{-4.75cm}\ \textbf{Millstone Hill}
   }
  \end{textblock}
- \begin{textblock}{0.5}(0.425,0.6)
+ \begin{textblock}{0.5}(0.425,0.525)
   \only<3>{
   \includegraphics[height=3.6cm]{jicamarca_and_me}\\
   \vspace{-3.6cm}\ \textbf{Jicamarca}
+  }
+ \end{textblock}
+ \begin{textblock}{0.5}(0.25,0.525)
+  \only<4>{
+  \includegraphics[height=3.6cm]{pfisr}\\
+  \vspace{-3.6cm}\ {\color{white}\textbf{PFISR}}
   }
  \end{textblock}
 \end{frame}
 
 \begin{frame}{Zoo of ionospheric plasma}
  There are many different plasma phenomena, each presenting its own challenges for observation.
+ Main challenges depicted in image: separating targets, range-spread targets
  \begin{columns}
   \column{0.365\textwidth}
   \begin{itemize}
