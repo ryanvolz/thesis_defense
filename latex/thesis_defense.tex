@@ -2,6 +2,7 @@
 % beamer settings
 \usetheme{Custom}
 \usefonttheme{professionalfonts} % make beamer work best with unicode-math
+% \usefonttheme[stillsansserifsmall,stillsansseriflarge]{serif}
 \setbeamercovered{transparent}
 
 % Delete this, if you do not want the table of contents to pop up at
@@ -13,25 +14,31 @@
   \end{frame}
 }
 
+% microtype for improved spacing and readability
+\usepackage{microtype}
+
 % language stuff
-\usepackage{polyglossia}
-\setdefaultlanguage[variant=american]{english}
+% \usepackage{polyglossia}
+% \setdefaultlanguage[variant=american]{english}
 \usepackage[english=american]{csquotes} % english=american needed because polyglossia support is not good yet
 \MakeOuterQuote{"}
 \MakeAutoQuote{<}{>}
 
-% xetex font stuff
+% modern font stuff
 \usepackage{fontspec} % enable access to system fonts
-\defaultfontfeatures{Mapping=tex-text} % map TeX conventions for quotation marks, dashes to proper characters
+% Mapping=tex-text not supported yet in LuaTeX
+% \defaultfontfeatures{Mapping=tex-text} % map TeX conventions for quotation marks, dashes to proper characters
+\defaultfontfeatures{Ligatures=TeX} % map TeX conventions for quotation marks, dashes to proper characters
 %\setmainfont{STIXGeneral}
 %\setmainfont{Times New Roman}
 %\setmainfont{Linux Libertine O} % open source Times New Roman look-alike
 \setmainfont{TeX Gyre Pagella} % expanded URW Palladio, like Palatino
 %\setsansfont{TeX Gyre Adventor} % expanded URW Gothic, like AvantGarde
-\setsansfont[Scale=MatchLowercase]{Linux Biolinum O} % similar to Optima/URW Classico which pairs well with Palatino
+\setsansfont[Scale=MatchLowercase]{Linux Biolinum} % similar to Optima/URW Classico which pairs well with Palatino
+% \setsansfont[Scale=MatchLowercase]{Linux Biolinum O} % similar to Optima/URW Classico which pairs well with Palatino
 %\setmonofont{}
 %\usepackage{unicode-math}
-%\setmathfont{lmmath-regular.otf}
+%\setmathfont{Latin Modern Math}
 %\setmathfont{xits-math.otf} % use with Times
 %\setmathfont{Asana-Math.otf} % use with Palatino/URW Palladio/TeXGyrePagella
 
@@ -40,6 +47,7 @@
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \graphicspath{{../figures/}}
 \usepackage{tikz,ifthen}
+\tikzstyle{image}=[inner sep=0pt]
 % includecoveredgraphics and covergraphics commands to enable image transparency
 \makeatletter
 \let\includecovered@origgraphics=\includegraphics
@@ -66,8 +74,8 @@
 \usepackage[absolute,overlay]{textpos}
 \TPGrid{1}{1}
 \usepackage{mathtools} % for math stuff not provided by AMSmath
-% \usepackage[dvipdfmx]{movie15_dvipdfmx}
 \usepackage{multimedia} % movies
+\usepackage{appendixnumberbeamer} % do not include appendix slides in total frame number
 
 % define commands
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -77,7 +85,7 @@
 %\DeclarePairedDelimiterX{\innerprod}[2]{\langle}{\rangle}{#1, #2}
 \usepackage{mathcommands-private}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Sparsity for Ionospheric Radar]{Theory and Applications of Sparsity\\for Radar Sensing of Ionospheric Plasma}
 \author{Ryan Volz}
@@ -270,13 +278,14 @@
 \begin{frame}{Delay-frequency sidelobes}
  Unfortunately, decoding poses its own ambiguity problem that adds complexity to analysis: \alert{delay-frequency sidelobes}.
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Near-ideal}+2ex]
   \node<1>[left,align=center] at (0,0.5) {Uncoded};
-  \node<1>[right] at (0,0) {\includegraphics{head_and_flare_mf_rti_2}};
+  \node<1>[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_2}};
   \node<2>[left,align=center] at (0,0.5) {Near-ideal\\decoding};
-  \node<2>[right] at (0,0) {\includegraphics{head_and_flare_recovered_rti_noise_1}};
+  \node<2>[right,image] at (0,0) {\includegraphics{head_and_flare_recovered_rti_noise_1}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Minimum\\sidelobe\\code};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_mf_rti_1}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_mf_rti_1}};
  \end{tikzpicture}
 \end{frame}
 
@@ -351,9 +360,9 @@
   The \alert{matched filter} correlates every segment of the received signal with the transmitted pulse.
  \end{definition}
  \begin{example}[Barker-13 code]
-  \includegraphics[width=0.45\textwidth]{barker13pulse} $\star$ \includegraphics[width=0.45\textwidth]{barker13pulse} $=$\\
-  \centering\includegraphics[width=0.45\textwidth]{b13acorr_analog}
  \end{example}
+ \centering
+ \movie[autostart,loop,poster,width=4in,height=1.501730in]{}{autocorrelation_animation_b13.mp4}
 \end{frame}
 
 \begin{frame}{Classical detection with the matched filter}
@@ -773,57 +782,29 @@ $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
 
 \begin{frame}{Iterative Soft Thresholding}
  \begin{columns}
-  \column{0.3\textwidth}
-  Guess:
-  \column{0.3\textwidth}
-  $h$
-  \column{0.4\textwidth}
-  \centering
-  \includegraphics{ist/ist_x001}
- \end{columns}
- \begin{columns}
-  \column{0.3\textwidth}
-  Forward model, calculate error:
-  \column{0.3\textwidth}
-  $z = y - A(h)$
-  \column{0.4\textwidth}
-  \centering
-  \includegraphics{ist/ist_z001}
- \end{columns}
- \begin{columns}
-  \column{0.3\textwidth}
-  Matched filtering of error:
-  \column{0.3\textwidth}
-  $A^*(z)$
-  \column{0.4\textwidth}
-  \centering
-  \includegraphics{ist/ist_Asz001}
- \end{columns}
- \begin{columns}
-  \column{0.3\textwidth}
-  Add previous guess:
-  \column{0.3\textwidth}
-  $h + A^*(z)$
-  \column{0.4\textwidth}
-  \centering
-  \includegraphics{ist/ist_xpt001}
- \end{columns}
- \begin{columns}
-  \column{0.3\textwidth}
-  Threshold to form new guess:
-  \column{0.3\textwidth}
-  $h = \mathbf{soft}(h + A^*(z))$
-  \column{0.4\textwidth}
-  \centering
-  \includegraphics{ist/ist_x002}
+   \column{0.6\textwidth}
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Guess:}%
+   \hspace{0.05\textwidth}%
+   \parbox[c][0.505in]{0.5\textwidth}{$h$}\\
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Forward model, calculate error:}%
+   \hspace{0.05\textwidth}%
+   \parbox[c][0.505in]{0.5\textwidth}{$z = y - A(h)$}\\
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Matched filtering of error:}%
+   \hspace{0.05\textwidth}%
+   \parbox[c][0.505in]{0.5\textwidth}{$A^*(z)$}\\
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Add previous guess:}%
+   \hspace{0.05\textwidth}%
+   \parbox[c][0.505in]{0.5\textwidth}{$h + A^*(z)$}\\
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Threshold to form new guess:}%
+   \hspace{0.05\textwidth}%
+   \parbox[c][0.505in]{0.5\textwidth}{$h = \mathbf{soft}(h + A^*(z))$}\\
+   \column{0.4\textwidth}
+   \centering
+   \movie[autostart,loop,poster,width=1.85in,height=2.7in]{}{ist_animation.mp4}
  \end{columns}
 \end{frame}
 
 \begin{frame}{Accelerated proximal gradient method}
- 
-\end{frame}
-
-\begin{frame}{Linearized ADMM}
  
 \end{frame}
 
@@ -909,86 +890,88 @@ $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
 \subsection{Waveform Inversion}
 
 \begin{frame}{Movie of meteor sidelobe removal}
- \centering
- \includegraphics[width=\textwidth]{movie_poster}
- 
- \movie[externalviewer]{{\color{red}Click to play}}{head_and_flare_mf_vs_recovered_1.mp4}
-%  \includemovie[poster]{}{}{head_and_flare_mf_vs_recovered_1.mp4}
+ \movie[loop,poster,width=4.320687in,height=2.28in]{\includegraphics[width=\textwidth]{head_and_flare_mf_vs_recovered_1}}{head_and_flare_mf_vs_recovered_1.mp4}
 \end{frame}
 
-\begin{frame}{Example: Minimum sidelobe code}
+\begin{frame}[t]{Example: Minimum sidelobe code}
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
   \node[left,align=center] at (0,0.5) {Matched\\Filter};
-  \node[right] at (0,0) {\includegraphics{head_and_flare_mf_rti_1}};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_1}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_1}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_1}};
  \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Example: Barker-13 code}
+\begin{frame}[t]{Example: Barker-13 code}
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
   \node[left,align=center] at (0,0.5) {Matched\\Filter};
-  \node[right] at (0,0) {\includegraphics{head_and_flare_mf_rti_0}};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_0}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_0}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_0}};
  \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Example: Pseudorandom code}
+\begin{frame}[t]{Example: Pseudorandom code}
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
   \node[left,align=center] at (0,0.5) {Matched\\Filter};
-  \node[right] at (0,0) {\includegraphics{head_and_flare_mf_rti_4}};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_4}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_4}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_4}};
  \end{tikzpicture}
- \vspace{-6ex}
+ \vspace{-5ex}
  \begin{alertblock}{}<2>
   Works with variety of codes
  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Example: LFM chirp}
+\begin{frame}[t]{Example: LFM chirp}
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
   \node[left,align=center] at (0,0.5) {Matched\\Filter};
-  \node[right] at (0,0) {\includegraphics{head_and_flare_mf_rti_3}};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_3}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_3}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_3}};
  \end{tikzpicture}
- \vspace{-6ex}
+ \vspace{-5ex}
  \begin{alertblock}{}<2>
   Some codes are troublesome
  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Example: Uncoded}
+\begin{frame}[t]{Example: Uncoded}
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
   \node[left,align=center] at (0,0.5) {Matched\\Filter};
-  \node[right] at (0,0) {\includegraphics{head_and_flare_mf_rti_2}};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_2}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_2}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_2}};
  \end{tikzpicture}
- \vspace{-6ex}
+ \vspace{-5ex}
  \begin{alertblock}{}<2>
   Works even with uncoded pulses!
  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Waveform inversion code comparison}
+\begin{frame}[t]{Waveform inversion code comparison}
  \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
   \node<1>[left,align=center] at (0,0.5) {Minimum\\sidelobe};
-  \node<1>[right] at (0,0) {\includegraphics{head_and_flare_recovered_rti_noise_1}};
+  \node<1>[right,image] at (0,0) {\includegraphics{head_and_flare_recovered_rti_noise_1}};
   \node<2->[left,align=center] at (0,0.5) {Pseudo-\\random};
-  \node<2->[right] at (0,0) {\includegraphics{head_and_flare_recovered_rti_noise_4}};
+  \node<2->[right,image] at (0,0) {\includegraphics{head_and_flare_recovered_rti_noise_4}};
   \fill[white] (0,-1.125) rectangle (9,-0.875);
   \node[left,align=center] at (0,-2.3) {Uncoded};
-  \node[right] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_2}};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_2}};
  \end{tikzpicture}
- \vspace{-6ex}
+ \vspace{-5ex}
  \begin{alertblock}{}<3->
   Quality of solution depends on fidelity of waveform
  \end{alertblock}
@@ -1003,6 +986,12 @@ $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
 \againframe<5->{contributions}
 
 \begin{frame}{Acknowledgements}
+ 
+\end{frame}
+
+\appendix
+
+\begin{frame}{Linearized ADMM}
  
 \end{frame}
 
