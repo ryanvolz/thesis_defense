@@ -41,7 +41,7 @@ with open(basefilename + '_mf.pkl', 'rb') as f:
     mf = cPickle.load(f)
 
 dpi = 75 # should be sized to match font size
-savedpi = dpi*1 # should be a multiple of dpi
+savedpi = dpi*4 # should be a multiple of dpi
 def plotter(z, t, r, **kwargs):
     xinches = len(t)/float(dpi)
     yinches = len(r)/float(dpi)
