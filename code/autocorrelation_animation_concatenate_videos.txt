@@ -1,0 +1,3 @@
+ffmpeg -i autocorrelation_animation_b13.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate1.ts
+ffmpeg -i autocorrelation_animation_msl.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate2.ts
+ffmpeg -i "concat:intermediate1.ts|intermediate2.ts" -c copy output.mp4
