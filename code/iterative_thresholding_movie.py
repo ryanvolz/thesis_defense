@@ -79,18 +79,36 @@ for spec, h in zip(gs, [h1, h2, h1, h1, h1]):
     # so tight_layout works
     ax.get_subplotspec = loc.get_subplotspec
 
-def clear_frame():
-    for ax in axs:
-        ax.cla()
-    for ax in [axs[0]] + axs[2:]:
-        ax.axes.get_xaxis().set_visible(False)
-        ax.axes.get_yaxis().set_visible(False)
-        ax.set_ylim(-105, 105)
-    axs[1].axes.get_xaxis().set_visible(False)
-    axs[1].axes.get_yaxis().set_visible(False)
-    axs[1].set_xlim(-50, 50)
+for ax in [axs[0]] + axs[2:]:
+    ax.axes.get_xaxis().set_visible(False)
+    ax.axes.get_yaxis().set_visible(False)
+    ax.set_ylim(-105, 105)
+axs[1].axes.get_xaxis().set_visible(False)
+axs[1].axes.get_yaxis().set_visible(False)
+axs[1].set_xlim(-50, 50)
 
-clear_frame()
+# x stem
+ml0, sl0, bl0 = axs[0].stem(np.arange(len(x)), x)
+plt.setp(bl0, 'color', 'k')
+# z stem
+sl1 = axs[1].hlines(np.arange(len(y)), 0, y, color='green')
+ml1, = axs[1].plot(y, np.arange(len(y)), 'go')
+bl1, = axs[1].plot([0, 0], [0, len(y)], 'k-')
+# Asz stem
+ml2, sl2, bl2 = axs[2].stem(np.arange(len(x)), x)
+plt.setp(bl2, 'color', 'k')
+# x + Asz stem
+ml3, sl3, bl3 = axs[3].stem(np.arange(len(x)), x)
+plt.setp(bl3, 'color', 'k')
+tul, = axs[3].plot([0, len(x)], [0, 0], 'r-')
+tll, = axs[3].plot([0, len(x)], [0, 0], 'r-')
+# xnew stem
+ml4, sl4, bl4 = axs[4].stem(np.arange(len(x)), x)
+plt.setp(bl4, 'color', 'k')
+txt = axs[0].text(5, 95, '', ha='left', va='top')
+
+artists = [ml0, ml1, ml2, ml3, ml4, sl1, tul, tll, txt] + sl0 + sl2 + sl3 + sl4
+
 plt.tight_layout(0.1)
 
 plt.draw() # need draw to update axes position
@@ -113,6 +131,7 @@ def ist():
         
         yield k, xhat, z, Asz, thresh, xnew
         
+        print('{0}: {1}'.format(k, np.max(np.abs(xnew - xhat))))
         if np.max(np.abs(xnew - xhat)) < 1e-1:
             xnew = np.zeros_like(x)
             return
@@ -128,23 +147,43 @@ def gen():
     for state in it:
         yield state
 
+def clear_frame():
+    for a in artists:
+        a.set_visible(False)
+
 def animate(framedata):
-    clear_frame()
+    for a in artists:
+        a.set_visible(True)
     k, xhat, z, Asz, thresh, xnew = framedata
-    plotit(axs[0], xhat)
-    axs[0].text(5, 95, '{0}'.format(k), ha='left', va='top')
-    plotz(axs[1], z)
-    plotit(axs[2], Asz)
-    plotit(axs[3], xhat + Asz, thresh)
-    plotit(axs[4], xnew)
+    
+    txt.set_text('{0}'.format(k))
+    ml0.set_ydata(xhat)
+    for a, d in zip(sl0, xhat):
+        a.set_ydata([0, d])
+    verts = [ ((thisxmin, thisy), (thisxmax, thisy))
+              for thisxmin, thisxmax, thisy in zip(np.zeros(len(z)), z, np.arange(len(z)))]
+    sl1.set_segments(verts)
+    ml1.set_xdata(z)
+    ml2.set_ydata(Asz)
+    for a, d in zip(sl2, Asz):
+        a.set_ydata([0, d])
+    ml3.set_ydata(xhat + Asz)
+    for a, d in zip(sl3, xhat + Asz):
+        a.set_ydata([0, d])
+    tul.set_ydata([thresh, thresh])
+    tll.set_ydata([-thresh, -thresh])
+    ml4.set_ydata(xnew)
+    for a, d in zip(sl4, xnew):
+        a.set_ydata([0, d])
     
 anim = animation.FuncAnimation(fig, animate, init_func=clear_frame, 
                                frames=gen, interval=100, repeat_delay=1000, 
-                               blit=False)
+                               save_count=200, blit=False)
 
 anim.save('ist_animation.mp4', 
-          fps=8, dpi=savedpi, extra_args=['-vcodec', 'libx264', 
-                                          '-g', '1'])
+          fps=8, dpi=savedpi, 
+          extra_args=['-vcodec', 'libx264', 
+                      '-g', '1'])
 
 #plt.show()
 plt.close('all')
