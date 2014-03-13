@@ -25,7 +25,9 @@ params = {#'figure.subplot.left': 0.01,
           'lines.linewidth': 0.45,
           'axes.linewidth': 0.45,
           'xtick.major.size': 2,
+          'xtick.major.pad': 2,
           'ytick.major.size': 2,
+          'ytick.major.pad': 3,
           'text.usetex': False}
           #'text.latex.preamble': ['\usepackage{amsmath}']}
 plt.rcParams.update(params)
@@ -88,3 +90,4 @@ plt.savefig('ambiguity_lfm.pdf', dpi=savedpi, bbox_inches='tight',
             pad_inches=0.025, transparent=True)
 
 #plt.show()
+plt.close('all')

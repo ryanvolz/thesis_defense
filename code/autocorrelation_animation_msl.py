@@ -155,7 +155,7 @@ anim = animation.FuncAnimation(fig, animate, init_func=init_frame,
 
 anim.save('autocorrelation_animation_msl.mp4', 
           fps=6, dpi=savedpi, extra_args=['-vcodec', 'libx264', 
-                                          '-g', '1'])
+                                          '-g', '3']) # key frame interval
 
 #plt.show()
 plt.close('all')

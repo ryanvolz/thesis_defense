@@ -31,7 +31,9 @@ params = {#'figure.subplot.left': 0.01,
           'lines.linewidth': 0.45,
           'axes.linewidth': 0.45,
           'xtick.major.size': 2,
+          'xtick.major.pad': 2,
           'ytick.major.size': 2,
+          'ytick.major.pad': 3,
           'text.usetex': False}
           #'text.latex.preamble': ['\usepackage{amsmath}']}
 plt.rcParams.update(params)
@@ -123,7 +125,7 @@ for kp in xrange(5):
     anim = animation.FuncAnimation(fig, animate, init_func=init_frame, 
                                    frames=vlt.shape[0], interval=100, blit=False)
     anim.save(os.path.join(basedir, basefilename + '_mf_vs_recovered_{0}.mp4').format(kp), 
-              dpi=savedpi, extra_args=['-vcodec', 'libx264'])
+              dpi=savedpi, extra_args=['-vcodec', 'libx264', '-g', '10'])
 
 #plt.show()
 plt.close('all')

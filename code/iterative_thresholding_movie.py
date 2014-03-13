@@ -131,7 +131,6 @@ def ist():
         
         yield k, xhat, z, Asz, thresh, xnew
         
-        print('{0}: {1}'.format(k, np.max(np.abs(xnew - xhat))))
         if np.max(np.abs(xnew - xhat)) < 1e-1:
             xnew = np.zeros_like(x)
             return

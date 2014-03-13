@@ -155,7 +155,8 @@ anim = animation.FuncAnimation(fig, animate, init_func=init_frame,
 
 anim.save('autocorrelation_animation_b13.mp4', 
           fps=2, dpi=savedpi, extra_args=['-vcodec', 'libx264', 
-                                          '-g', '1'])
+                                          '-g', '5', # key frame interval
+                                          '-r', '6']) # output framerate (>=6 or else vlc won't play)
 
 #plt.show()
 plt.close('all')

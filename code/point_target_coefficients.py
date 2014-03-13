@@ -25,7 +25,9 @@ params = {#'figure.subplot.left': 0.01,
           'lines.linewidth': 0.45,
           'axes.linewidth': 0.45,
           'xtick.major.size': 2,
+          'xtick.major.pad': 2,
           'ytick.major.size': 2,
+          'ytick.major.pad': 3,
           'text.usetex': False}
           #'text.latex.preamble': ['\usepackage{amsmath}']}
 plt.rcParams.update(params)
@@ -66,7 +68,8 @@ for r, c in itertools.product(xrange(nr), xrange(nc)):
         plt.setp(ax.get_yticklabels(), visible=False)
     if c == (nc - 1):
         ax.yaxis.set_label_position("right")
-        ax.set_ylabel(r'$N = {0:n}$'.format(n), rotation=0)
+        ax.set_ylabel(r'$N = {0:n}$'.format(n), rotation=0, 
+                      ha='left', va='center', labelpad=3)
 
 plt.xlim(-1/ts/2/1e3, 1/ts/2/1e3)
 plt.ylim(-0.1*A**2, 1.1*A**2)
