@@ -117,74 +117,6 @@
 }
 
 \section*{Introduction and Motivation}
-\subsection*{Sparsity}
-\begin{frame}{The world is sparse}
- \begin{definition}
-  \vspace{-0.5ex}
-  \begin{itemize}
-   \item A vector is \alert{sparse} if only a small portion of its elements is nonzero.
-   \item Additionally, the term is often applied loosely to when this is approximately true (i.e. most of the elements are close to zero).
-  \end{itemize}
-  \vspace{-0.5ex}
- \end{definition}
- \begin{columns}
-  \column{0.5\textwidth}
-  Many natural phenomena have sparse representations:
-  \begin{itemize}
-   \item Music and speech (mp3)
-   \item Images (jpeg)
-  \end{itemize}
-  \column{0.5\textwidth}
-  \centering
-  {\tiny Alpacas at the Jicamarca radar site}
-  \includegraphics[width=\textwidth]{jicamarca_alpacas}
- \end{columns}
-\end{frame}
-
-\begin{frame}{Sparsity revolution}
- Exploitation of inherent signal sparsity through compressed sensing is leading to advancements in many subjects.
- \begin{columns}
-  \column{0.475\textwidth}
-  \begin{exampleblock}{Single pixel camera (1)}
-   Enables unique wavelengths\\
-   {\tiny dsp.rice.edu/cscamera}
-  \end{exampleblock}
-  \begin{exampleblock}{MRI (2)}
-   Faster scans, higher resolution\\
-   {\tiny eecs.berkeley.edu/~mlustig/CS.html}
-  \end{exampleblock}
-  \begin{exampleblock}{Genomics}
-   High-throughput screening\\
-   {\tiny erlichlab.wi.mit.edu}
-  \end{exampleblock}
-  \column{0.525\textwidth}
-  \begin{columns}
-   \column{0.05\textwidth}
-   (1)
-   \column{0.95\textwidth}
-   \includegraphics[width=\textwidth]{cscam}
-  \end{columns}
-  \vspace{2ex}
-  \begin{columns}
-   \column{0.05\textwidth}
-   (2)
-   \column{0.95\textwidth}
-   \begin{minipage}[c]{0.33\textwidth}
-    \scriptsize\centering
-    Original
-   \end{minipage}%
-   \begin{minipage}[c]{0.33\textwidth}
-    \scriptsize\centering
-    Filtered backprojection
-   \end{minipage}%
-   \begin{minipage}[c]{0.33\textwidth}
-    \scriptsize\centering
-    Compressed sensing
-   \end{minipage}
-   \includegraphics[width=\textwidth]{mri_cs}
-  \end{columns}
- \end{columns}
-\end{frame}
 
 \subsection*{The Ionosphere}
 
@@ -206,21 +138,6 @@
  \end{textblock}
 \end{frame}
 
-% \begin{frame}{Importance of the ionosphere}{Communications}
-%  \centering
-%  \includegraphics[width=0.7\textheight]{ionosphere_communications}
-%  \begin{itemize}
-%   \item Radio waves of lower frequency (less than $\approx 10$\ MHz) reflect off ionosphere.
-%   \item Microwave frequencies (e.g. GPS) can pass through, but experience frequency-dependent refraction and delay.
-%   \item Plasma irregularities additionally perturb signals.
-%  \end{itemize}
-% \end{frame}
-% 
-% \begin{frame}{Importance of the ionosphere}{Science of the geospace system}
-%  \centering
-%  \includegraphics[height=0.8\textheight]{ionosphereprocesses}
-% \end{frame}
-
 \begin{frame}{Ionospheric environment: meteoroids and meteors}
  \begin{columns}
   \column{0.5\textwidth}
@@ -229,24 +146,41 @@
     \item Solid body in space
     \item Small (< 1 m in diameter)
     \item Fast (from 11 to 72 \alert{km/s})
+    \item Exponentially more common as size decreases
    \end{itemize}
   \end{definition}
-  \raggedleft
-  \includegraphics[width=\textwidth]{space_bodies}\\
-  {\tiny Ceplecha (1998), Meteor Phenomena and Bodies}
+  \begin{columns}[onlytextwidth]
+   \column{0.35\textwidth}
+   \begin{beamercolorbox}{example text}
+    \centering
+    Micro\-meteorites\\
+    (landed on Earth)
+   \end{beamercolorbox}
+   \column{0.65\textwidth}
+   \includegraphics[width=\textwidth]{micrometeorites}
+  \end{columns}
   \column{0.5\textwidth}
   \begin{definition}[Meteor]
    Plasma created by meteoroid entering the atmosphere.
   \end{definition}
   \raggedleft
-  \includegraphics[width=\textwidth]{leonid_meteor_2009}\\
-  {\tiny CC BY 2.0, http://www.flickr.com/photos/edsweeney/}
+  \movie[autostart,loop,poster,width=2.1in,height=1.4in]{}{meteor_spectacular_double_shot.mp4}\\
+  {\tiny NASA (2011)}
  \end{columns}
 \end{frame}
 
 \begin{frame}{Importance of meteoroids}
  \begin{columns}
   \column{0.6\textwidth}
+  \begin{columns}[onlytextwidth]
+   \column{0.35\textwidth}
+   \begin{beamercolorbox}{example text}
+    \centering
+    Impact damage to Space Shuttle Atlantis
+   \end{beamercolorbox}
+   \column{0.6\textwidth}
+   \includegraphics[width=\textwidth]{shuttle_atlantis_impact_inset}
+  \end{columns}
   \begin{block}{High speed impacts}
   Threat to satellites and spacecraft from%
    \begin{itemize}
@@ -264,7 +198,23 @@
    \end{itemize}
   \end{block}
  \end{columns}
- \includegraphics[width=\textwidth]{ImpactPlasmaExpansion}
+ \centering
+ \includegraphics[width=0.75\textwidth]{ImpactPlasmaExpansion}
+\end{frame}
+
+\begin{frame}{Importance of the ionosphere}{Communications}
+ \centering
+ \includegraphics[width=0.7\textwidth]{ionosphere_communications}
+ \begin{itemize}
+  \item Radio waves of lower frequency (less than $\approx 10$\ MHz) reflect off ionosphere.
+  \item Microwave frequencies (e.g. GPS) can pass through, but experience frequency-dependent refraction and delay.
+  \item Plasma irregularities additionally perturb signals.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Importance of the ionosphere}{Science of the geospace system}
+ \centering
+ \includegraphics[height=0.8\textheight]{ionosphereprocesses}
 \end{frame}
 
 \subsection*{Radar Measurements}
@@ -273,26 +223,29 @@
  \begin{definition}
   \alert{Incoherent Scatter Radars} (ISRs, locations shown {\color{red}below}) are radars sensitive enough to measure scattering from electrons in the background ionosphere.
  \end{definition}
- \includegraphics[width=\textwidth]{isr_map}
+ \includegraphics<1>[width=\textwidth]{isr_map}
+ \includegraphics<2>[width=\textwidth]{isr_map_pfisr}
+ \includegraphics<3>[width=\textwidth]{isr_map_millstone}
+ \includegraphics<4>[width=\textwidth]{isr_map_jicamarca}
  
  \vspace{2ex}
- Range of ionospheric regions: \onslide<2>{mid-latitude,} \onslide<3>{equatorial,} \onslide<4>{polar.}
- \begin{textblock}{0.5}(0.425,0.42)
+ Range of ionospheric regions: \onslide<2>{polar,} \onslide<3>{mid-latitude,} \onslide<4>{equatorial.}
+ \begin{textblock}{0.5}(0.25,0.525)
   \only<2>{
+  \includegraphics[height=3.6cm]{pfisr}\\
+  \vspace{-3.6cm}\ {\color{white}\textbf{PFISR}}
+  }
+ \end{textblock}
+ \begin{textblock}{0.5}(0.425,0.42)
+  \only<3>{
   \includegraphics[height=4.75cm]{millstone_hill_radar}\\
   \vspace{-4.75cm}\ \textbf{Millstone Hill}
   }
  \end{textblock}
  \begin{textblock}{0.5}(0.425,0.525)
-  \only<3>{
+  \only<4>{
   \includegraphics[height=3.6cm]{jicamarca_and_me}\\
   \vspace{-3.6cm}\ \textbf{Jicamarca}
-  }
- \end{textblock}
- \begin{textblock}{0.5}(0.25,0.525)
-  \only<4>{
-  \includegraphics[height=3.6cm]{pfisr}\\
-  \vspace{-3.6cm}\ {\color{white}\textbf{PFISR}}
   }
  \end{textblock}
 \end{frame}
@@ -300,7 +253,7 @@
 \begin{frame}{Radar meteors}
  \begin{block}{Types of scattering}
   \begin{itemize}
-   \item {\color{green!80!black}Head}: dense ball of plasma surrounding the meteoroid
+   \item {\color{green!80!black}Head}: ball of plasma surrounding the meteoroid
    \item {\color{purple}Trail}: plasma left in wake of meteoroid
   \end{itemize}
  \end{block}
@@ -371,6 +324,81 @@
  \includegraphics[width=\textwidth]{equatorial_example_mf_rti_3}\\
  \includegraphics[width=\textwidth]{head_and_flare_mf_rti_3}\\
  \includegraphics[width=\textwidth]{mathews_fragmentation}
+ \end{columns}
+\end{frame}
+
+\subsection*{Sparsity}
+\begin{frame}{The world is sparse}
+ \begin{definition}
+  \vspace{-0.5ex}
+  \begin{itemize}
+   \item A vector is \alert{sparse} if only a few of its elements are nonzero.
+   \item Additionally, the term is often applied loosely to when this is approximately true (i.e. most of the elements close to zero).
+  \end{itemize}
+  \vspace{-0.5ex}
+ \end{definition}
+ \begin{columns}
+  \column{0.5\textwidth}
+  Many natural phenomena have sparse representations:
+  \begin{itemize}
+   \item Music and speech (mp3)
+   \item Images (jpeg)
+  \end{itemize}
+  \begin{exampleblock}{Alpacas (right): 8.5x savings}
+   \begin{tabular}{rr}
+    Uncompressed: & 3600 KB\\
+    Compressed: & 420 KB
+   \end{tabular}
+  \end{exampleblock}
+  \column{0.5\textwidth}
+  \centering
+  {\tiny Alpacas at the Jicamarca radar site}
+  \includegraphics[width=\textwidth]{jicamarca_alpacas}
+ \end{columns}
+\end{frame}
+
+\begin{frame}{Sparsity revolution}
+ Exploitation of inherent signal sparsity through compressed sensing is leading to advancements in many subjects.
+ \begin{columns}
+  \column{0.475\textwidth}
+  \begin{exampleblock}{Single pixel camera (1)}
+   Smaller, cheaper, more flexible\\
+   {\tiny dsp.rice.edu/cscamera}
+  \end{exampleblock}
+  \begin{exampleblock}{MRI (2)}
+   Faster scans, higher resolution\\
+   {\tiny eecs.berkeley.edu/~mlustig/CS.html}
+  \end{exampleblock}
+  \begin{exampleblock}{Genomics}
+   High-throughput screening\\
+   {\tiny erlichlab.wi.mit.edu}
+  \end{exampleblock}
+  \column{0.525\textwidth}
+  \begin{columns}
+   \column{0.05\textwidth}
+   (1)
+   \column{0.95\textwidth}
+   \includegraphics[width=\textwidth]{cscam}
+  \end{columns}
+  \vspace{2ex}
+  \begin{columns}
+   \column{0.05\textwidth}
+   (2)
+   \column{0.95\textwidth}
+   \begin{minipage}[c]{0.33\textwidth}
+    \scriptsize\centering
+    Original
+   \end{minipage}%
+   \begin{minipage}[c]{0.33\textwidth}
+    \scriptsize\centering
+    Filtered backprojection
+   \end{minipage}%
+   \begin{minipage}[c]{0.33\textwidth}
+    \scriptsize\centering
+    Compressed sensing
+   \end{minipage}
+   \includegraphics[width=\textwidth]{mri_cs}
+  \end{columns}
  \end{columns}
 \end{frame}
 
@@ -457,22 +485,6 @@
  \movie[autostart,loop,poster,width=4in,height=1.501730in]{}{autocorrelation_animation_b13_msl.mp4}
 \end{frame}
 
-% \begin{frame}{Classical detection with the matched filter}
-%  \begin{block}{Ideal point target}
-%   \begin{itemize}
-%    \item Point target perfectly reflects the transmitted signal
-%    \item Receive attenuated copy of signal after some delay
-%    \item Delay is a function of the target's range
-%   \end{itemize}
-%  \end{block}
-%  \begin{block}{Matched filter properties}
-%   \begin{itemize}
-%    \item Peak of output gives \alert{maximum likelihood estimate} of target's range and amount of attenuation
-%    \item Maximum signal-to-noise ratio (SNR) at peak of all filters
-%   \end{itemize}
-%  \end{block}
-% \end{frame}
-
 \subsection{Measurement Ambiguity}
 
 \begin{frame}{Frequency filter banks}
@@ -486,8 +498,10 @@
  \end{itemize}
  \begin{columns}
   \column{0.5\textwidth}
-  \centering
-  Result of filter bank for\\centered "point" target,\\using Barker-13 code
+  \begin{beamercolorbox}{example text}
+   \centering
+   Result of filter bank for\\centered "point" target,\\using Barker-13 code
+  \end{beamercolorbox}
   \column{0.5\textwidth}
   \includegraphics{ambiguity_barker13}
  \end{columns}
@@ -558,7 +572,7 @@
   \end{beamercolorbox}
   \column{0.75\textwidth}
   \centering
-  \includegraphics{flare_mf_rti_3}
+  \includegraphics{flare_mf_rti_1}
  \end{columns}
 \end{frame}
 
@@ -609,10 +623,6 @@
 \section{Radar Model}
 \subsection{Defining the Model}
 
-\begin{frame}{Model needed}
- Need to formally conceptualize radar problem in order to employ sparsity and compressed sensing techniques.
-\end{frame}
-
 \begin{frame}{Matched filtering as imaging}
  \begin{block}{Imaging analogy}
   Measured "image" is blurred by the ambiguity function:
@@ -632,27 +642,18 @@
    {\color{red}Target reflectivity\\(source image)}
   \end{columns}
  \end{block}
- (Insert blurring figure)
+ \begin{columns}[onlytextwidth]
+  \column{0.33\textwidth}
+  \centering
+  \includegraphics<1>{blurred_image_example_blurred}
+  \column{0.33\textwidth}
+  \centering
+  \includegraphics<1>{blurred_image_example_kernel}
+  \column{0.33\textwidth}
+  \centering
+  \includegraphics<1>{blurred_image_example_orig}
+ \end{columns}
 \end{frame}
-
-% \begin{frame}{Towards ambiguity inversion}
-%  \begin{block}{Ambiguity equation}
-%   Represent matched filter ambiguity as linear system $X$:
-%   \begin{equation*}
-%    x[n,p] = X\left(h[n,p]\right) \quad\longrightarrow \text{Equation is non-invertible.}
-%   \end{equation*}
-%  \end{block}
-%  \begin{block}{Make matched filtering explicit}
-%   Let $A^*$ represent frequency-shifted matched filtering. Then
-%   \begin{equation*}
-%    X(h) = A^*\left(A(h)\right)
-%   \end{equation*}
-%   the ambiguity operation is matched filtering composed with its adjoint. Rewrite the ambiguity equation:
-%   \begin{equation*}
-%    A^*\left(y[m]\right) = A^*\left(A\left(h[n,p]\right)\right)
-%   \end{equation*}
-%  \end{block}
-% \end{frame}
 
 \begin{frame}{Radar model from matched filter}
  \begin{columns}
@@ -717,10 +718,6 @@
 
 \subsection{Representation of Targets}
 
-\begin{frame}{Is a discrete model useful?}
- How well does this discrete model represent real (plasma) targets?
-\end{frame}
-
 \begin{frame}{Model discretization from radar signal equation}
  \begin{block}{Narrow-band radar equation for received signal}
   \vspace{-2ex}
@@ -772,33 +769,17 @@
  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Sparsity of non-point targets}
- We have the exact equation:
- \begin{block}{Reflectivity coefficient equation}
-  \vspace{-2ex}
-  \begin{equation*}
-   h[n,p] = \int_{p \tau}^{(p+1)\tau} \left[h(f, \lambda) e^{2\pi i f \lambda} * b_{p + 1}(f) \right](n\Delta{f}) \dee\lambda
-  \end{equation*}
-  \vspace{-2ex}
- \end{block}
- \begin{itemize}
-  \item Blurring from wrapped sinc mostly preserves sparsity (evidenced by point target analysis)
-  \item Integration over delay exactly preserves sparsity
- \end{itemize}
- \begin{alertblock}{}
-  If a target has a sparse reflectivity function, we can reasonably expect its reflectivity coefficient representation to be sparse as well.
- \end{alertblock}
-\end{frame}
-
 \section{Waveform Inversion}
 \subsection{Compressed Sensing}
 
 \begin{frame}{Under-determined systems of equations}
  Not enough measurements to constrain unknown values\\(e.g. the radar model):
- 
- \begin{columns}
-  \column{0.225\textwidth}
-  \column{0.475\textwidth}
+ \vspace{1ex}
+ \begin{columns}[onlytextwidth]
+  \column{0.2\textwidth}
+  \centering
+  \includegraphics{head_and_flare_example_signal}
+  \column{0.5\textwidth}
    $%\begin{equation*}
     {\color{purple}
     \begin{bmatrix}
@@ -821,7 +802,7 @@
  \end{columns}
  
  \begin{center}
-  {\color{purple}Measurement}\hspace{3ex}{\color{blue}Model}\hspace{3ex}{\color{red}Unknown}
+  {\color{purple}Measurement}\hspace{3ex}{\color{blue}Model}\hspace{3ex}{\color{red}Unknown}\hspace*{9ex}
  \end{center}
  \begin{itemize}
   \item Infinite number of solutions
@@ -889,12 +870,12 @@
 \begin{frame}{First-order step}{Smooth}
  If the function being minimized is differentiable, the most natural first-order step is a gradient step.
  \begin{center}
-  \includegraphics[height=0.7\textheight]{Gradient_descent}
+  \movie[autostart,loop,poster,width=4in,height=2in]{}{gradient_descent_animation.mp4}
  \end{center}
 \end{frame}
 
 \begin{frame}{First-order step}{Non-smooth}
- For a non-differentiable function, an attractive alternative is the prox step.
+ For a non-differentiable function, an attractive alternative is the proximal (or prox) step.
  \begin{equation*}
   x^{k+1} \coloneqq \argmin_{x} \; \left( {\color{purple}G(x)} + {\color{blue} \frac{1}{2\mu} \norm{2}{x - x^{k}}^2 } \right)
  \end{equation*}
@@ -911,23 +892,10 @@
   \item This is surprisingly easy to solve and can be evaluated much like a gradient!
   \item Note that as $x^{k}$ approaches the minimum $x^*$, the smoothing term goes to zero.
  \end{itemize}
-\end{frame}
-
-\begin{frame}{The prox operator}
- The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
+ The \alert{prox operator} is defined for non-smooth $G(x)$ as
  \begin{equation*}
   \mathbf{prox}_{\mu G} (v) = \argmin_{x} \; \left( G(x) + \frac{1}{2\mu} \norm{2}{x - v}^2 \right).
  \end{equation*}
- \begin{exampleblock}{Projection onto a set}
-  If $G(x)$ is the indicator function for a closed convex set $\mathcal{C}$,
-  \begin{equation*}
-   G(x) = \begin{cases}
-           0 & x \in \mathcal{C}\\
-           \infty & x \notin \mathcal{C}
-          \end{cases}
-  \end{equation*}
-  $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
- \end{exampleblock}
 \end{frame}
 
 \begin{frame}{Proximal gradient method}
@@ -999,39 +967,6 @@
  \end{columns}
 \end{frame}
 
-% \begin{frame}{Accelerated proximal gradient method}
-%  
-% \end{frame}
-
-% \subsection{Implementation}
-%
-% Why prox algorithms?
-% 
-% \begin{frame}{FISTA with radar model}
-%  Compute model with FFTW and Cython\\
-%  Adaptive step size
-% \end{frame}
-% 
-% \begin{frame}{Waveform inversion}
-%  l1-rls gives sparse solution\\
-%  Leaves unmodeled noise\\
-%  Matched filter the unmodeled noise\\
-%  Add noise back to sparse solution = sidelobe removal\\
-%  Ambiguity function is $A^*A$, so sidelobes are $(A^*A - I)$
-% \end{frame}
-% 
-% \begin{frame}{Sparse solution}
-%  delay-frequency figure
-% \end{frame}
-% 
-% \begin{frame}{Unmodeled noise}
-%  delay-frequency figure
-% \end{frame}
-% 
-% \begin{frame}{Sidelobe removal}
-%  delay-frequency figure
-% \end{frame}
-
 \section{Results}
 
 \subsection{Experimental Setup}
@@ -1050,8 +985,6 @@
    \item VHF (50 MHz)
    \item Phased array of 96 $\times$\ 96 crossed half-wave dipoles
    \includegraphics[height=0.6\textwidth]{jicamarca}
-   \item 1.1° beamwidth
-   \item 1.5 MW peak power
    \item 1 MHz bandwidth (TX/RX)
   \end{itemize}
   \column{0.5\textwidth}
@@ -1102,7 +1035,7 @@
 \subsection{Waveform Inversion}
 
 \begin{frame}{Movie of meteor sidelobe removal}
- \movie[loop,poster,width=4.320687in,height=2.28in]{\includegraphics[width=\textwidth]{head_and_flare_mf_vs_recovered_1}}{head_and_flare_mf_vs_recovered_1.mp4}
+ \movie[autostart,loop,poster,width=4.320687in,height=2.28in]{\includegraphics[width=\textwidth]{head_and_flare_mf_vs_recovered_1}}{head_and_flare_mf_vs_recovered_1.mp4}
 \end{frame}
 
 \begin{frame}[t]{Example: Minimum sidelobe code}
@@ -1227,9 +1160,9 @@
  \end{block}
 \end{frame}
 
-\begin{frame}{Acknowledgements}
- 
-\end{frame}
+% \begin{frame}{Acknowledgements}
+%  
+% \end{frame}
 
 \begin{frame}{Questions}
  
@@ -1237,13 +1170,115 @@
 
 \appendix
 
-\begin{frame}{Radar model assumptions}
- 
+\begin{frame}{Classical detection with the matched filter}
+ \begin{block}{Ideal point target}
+  \begin{itemize}
+   \item Point target perfectly reflects the transmitted signal
+   \item Receive attenuated copy of signal after some delay
+   \item Delay is a function of the target's range
+  \end{itemize}
+ \end{block}
+ \begin{block}{Matched filter properties}
+  \begin{itemize}
+   \item Peak of output gives \alert{maximum likelihood estimate} of target's range and amount of attenuation
+   \item Maximum signal-to-noise ratio (SNR) at peak of all filters
+  \end{itemize}
+ \end{block}
 \end{frame}
 
+% \begin{frame}{Radar model assumptions}
+%  
+% \end{frame}
+
+\begin{frame}{Towards ambiguity inversion}
+ \begin{block}{Ambiguity equation}
+  Represent matched filter ambiguity as linear system $X$:
+  \begin{equation*}
+   x[n,p] = X\left(h[n,p]\right) \quad\longrightarrow \text{Equation is non-invertible.}
+  \end{equation*}
+ \end{block}
+ \begin{block}{Make matched filtering explicit}
+  Let $A^*$ represent frequency-shifted matched filtering. Then
+  \begin{equation*}
+   X(h) = A^*\left(A(h)\right)
+  \end{equation*}
+  the ambiguity operation is matched filtering composed with its adjoint. Rewrite the ambiguity equation:
+  \begin{equation*}
+   A^*\left(y[m]\right) = A^*\left(A\left(h[n,p]\right)\right)
+  \end{equation*}
+ \end{block}
+\end{frame}
+
+\begin{frame}{Sparsity of non-point targets}
+ We have the exact equation:
+ \begin{block}{Reflectivity coefficient equation}
+  \vspace{-2ex}
+  \begin{equation*}
+   h[n,p] = \int_{p \tau}^{(p+1)\tau} \left[h(f, \lambda) e^{2\pi i f \lambda} * b_{p + 1}(f) \right](n\Delta{f}) \dee\lambda
+  \end{equation*}
+  \vspace{-2ex}
+ \end{block}
+ \begin{itemize}
+  \item Blurring from wrapped sinc mostly preserves sparsity (evidenced by point target analysis)
+  \item Integration over delay exactly preserves sparsity
+ \end{itemize}
+ \begin{alertblock}{}
+  If a target has a sparse reflectivity function, we can reasonably expect its reflectivity coefficient representation to be sparse as well.
+ \end{alertblock}
+\end{frame}
+
+\begin{frame}{The prox operator}
+ The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
+ \begin{equation*}
+  \mathbf{prox}_{\mu G} (v) = \argmin_{x} \; \left( G(x) + \frac{1}{2\mu} \norm{2}{x - v}^2 \right).
+ \end{equation*}
+ \begin{exampleblock}{Projection onto a set}
+  If $G(x)$ is the indicator function for a closed convex set $\mathcal{C}$,
+  \begin{equation*}
+   G(x) = \begin{cases}
+           0 & x \in \mathcal{C}\\
+           \infty & x \notin \mathcal{C}
+          \end{cases}
+  \end{equation*}
+  $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
+ \end{exampleblock}
+\end{frame}
 
 % \begin{frame}{Linearized ADMM}
 %  
+% \end{frame}
+
+% \begin{frame}{Accelerated proximal gradient method}
+%  
+% \end{frame}
+
+% \subsection{Implementation}
+%
+% Why prox algorithms?
+% 
+% \begin{frame}{FISTA with radar model}
+%  Compute model with FFTW and Cython\\
+%  Adaptive step size
+% \end{frame}
+% 
+% \begin{frame}{Waveform inversion}
+%  l1-rls gives sparse solution\\
+%  Leaves unmodeled noise\\
+%  Matched filter the unmodeled noise\\
+%  Add noise back to sparse solution = sidelobe removal\\
+%  Ambiguity function is $A^*A$, so sidelobes are $(A^*A - I)$
+% \end{frame}
+% 
+% \begin{frame}{Sparse solution}
+%  delay-frequency figure
+% \end{frame}
+% 
+% \begin{frame}{Unmodeled noise}
+%  delay-frequency figure
+% \end{frame}
+% 
+% \begin{frame}{Sidelobe removal}
+%  delay-frequency figure
 % \end{frame}
 
 \end{document}
