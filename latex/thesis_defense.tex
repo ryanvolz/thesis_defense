@@ -233,7 +233,7 @@
  \begin{textblock}{0.5}(0.25,0.525)
   \only<2>{
   \includegraphics[height=3.6cm]{pfisr}\\
-  \vspace{-3.6cm}\ {\color{white}\textbf{PFISR}}
+  \vspace{-3.6cm}{\color{white}\ \textbf{PFISR}}
   }
  \end{textblock}
  \begin{textblock}{0.5}(0.425,0.42)
@@ -420,12 +420,20 @@
 \subsection*{}
 
 \begin{frame}<1-5>[label=contributions]{Contributions}
- In order to enable flexible high-resolution measurements of ionospheric plasma phenomena, including interfering and range-spread targets, I made the following contributions:
+ In order to enable \alert{flexible high-resolution measurements} of ionospheric plasma phenomena, including interfering and range-spread targets, I made the following contributions:
  \begin{enumerate}
-  \item<2,7-> Developed a discrete radar model suitable for signal reconstruction using sparsity-based inversion techniques.
-  \item<3,8-> Formulated the model representation of off-grid and distributed scatterers and analyzed it for accuracy and preservation of sparsity.
-  \item<4,9-> Created and tuned an efficient implementation of model inversion using modern convex optimization techniques.
-  \item<5,10-> Demonstrated the effectiveness of the inversion technique for the removal of filtering artifacts from ionospheric radar data.
+  \item<2,7-> Developed a discrete \alert{radar model} that captures signal sparsity and discovered its connections to existing techniques.
+  \item<3,8-> Formulated the model representation of \alert{off-grid and distributed scatterers} and analyzed it for accuracy and preservation of sparsity.
+  \item<4,9-> Created and tuned an \alert{efficient implementation} of model inversion using modern convex optimization techniques.
+  \item<5,10-> Demonstrated the effectiveness of the inversion technique for the \alert{removal of filtering artifacts} from real ionospheric radar data.
+ \end{enumerate}
+\end{frame}
+
+\begin{frame}{Additional contributions}
+ In addition, I also made the following contributions that will not be covered in this talk:
+ \begin{enumerate}
+  \item Created a \alert{range-time-frequency clustering algorithm} for detection and classification of ionospheric radar signals.
+  \item Simulated the statistical accuracy of interpolated matched filter estimation for range and range-rate \alert{super-resolution of meteor head echoes}.
  \end{enumerate}
 \end{frame}
 
@@ -1128,8 +1136,6 @@
  \tableofcontents[currentsection,hideallsubsections]
 \end{frame}
 
-\againframe<6->{contributions}
-
 \begin{frame}{Benefits of waveform inversion}
  \begin{columns}
   \column{0.5\textwidth}
@@ -1147,6 +1153,8 @@
  \includegraphics[width=\textwidth]{mathews_fragmentation}
  \end{columns}
 \end{frame}
+
+\againframe<6->{contributions}
 
 \begin{frame}{Further research}
  \begin{block}{Near-universal radar measurements}
