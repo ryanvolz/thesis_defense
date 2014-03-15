@@ -314,7 +314,7 @@
   \begin{enumerate}
    \item \alert{Differentiation} in a crowded and variable environment\\
    (e.g. meteors and electrojet)
-   \item \alert{Self-interference} from range-spread targets\\
+   \item \alert{Self-interference} of range-spread targets\\
    (e.g. meteor trails)
    \item \alert{High resolution} to observe small-scale processes\\
    (e.g. meteoroid\\fragmentation and flares)
@@ -419,13 +419,14 @@
 
 \subsection*{}
 
-\begin{frame}<1-5>[label=contributions]{Contributions}
+\begin{frame}<1-6>[label=contributions]{Contributions}
  In order to enable \alert{flexible high-resolution measurements} of ionospheric plasma phenomena, including interfering and range-spread targets, I made the following contributions:
  \begin{enumerate}
-  \item<2,7-> Developed a discrete \alert{radar model} that captures signal sparsity and discovered its connections to existing techniques.
-  \item<3,8-> Formulated the model representation of \alert{off-grid and distributed scatterers} and analyzed it for accuracy and preservation of sparsity.
-  \item<4,9-> Created and tuned an \alert{efficient implementation} of model inversion using modern convex optimization techniques.
-  \item<5,10-> Demonstrated the effectiveness of the inversion technique for the \alert{removal of filtering artifacts} from real ionospheric radar data.
+  \item<2,8-> Derived a discrete \alert{radar model} that captures signal sparsity in delay-frequency space.
+  \item<3,9-> Uncovered the adjoint relationship between the model and existing matched filter techniques, resulting in an \alert{intuitive interpretation} of the waveform inversion process.
+  \item<4,10-> \alert{Analyzed the model} to show how it exactly represents off-grid and distributed scatterers and preserves their sparsity.
+  \item<5,11-> Created and tuned an \alert{efficient implementation} of waveform inversion using modern convex optimization techniques.
+  \item<6,12-> \alert{Demonstrated the flexibility and effectiveness} of the inversion technique by removing filtering artifacts from meteor observations made with a variety of radar waveforms.
  \end{enumerate}
 \end{frame}
 
@@ -1154,7 +1155,7 @@
  \end{columns}
 \end{frame}
 
-\againframe<6->{contributions}
+\againframe<7->{contributions}
 
 \begin{frame}{Further research}
  \begin{block}{Near-universal radar measurements}
@@ -1178,79 +1179,79 @@
 
 \appendix
 
-\begin{frame}{Classical detection with the matched filter}
- \begin{block}{Ideal point target}
-  \begin{itemize}
-   \item Point target perfectly reflects the transmitted signal
-   \item Receive attenuated copy of signal after some delay
-   \item Delay is a function of the target's range
-  \end{itemize}
- \end{block}
- \begin{block}{Matched filter properties}
-  \begin{itemize}
-   \item Peak of output gives \alert{maximum likelihood estimate} of target's range and amount of attenuation
-   \item Maximum signal-to-noise ratio (SNR) at peak of all filters
-  \end{itemize}
- \end{block}
-\end{frame}
+% \begin{frame}{Classical detection with the matched filter}
+%  \begin{block}{Ideal point target}
+%   \begin{itemize}
+%    \item Point target perfectly reflects the transmitted signal
+%    \item Receive attenuated copy of signal after some delay
+%    \item Delay is a function of the target's range
+%   \end{itemize}
+%  \end{block}
+%  \begin{block}{Matched filter properties}
+%   \begin{itemize}
+%    \item Peak of output gives \alert{maximum likelihood estimate} of target's range and amount of attenuation
+%    \item Maximum signal-to-noise ratio (SNR) at peak of all filters
+%   \end{itemize}
+%  \end{block}
+% \end{frame}
 
 % \begin{frame}{Radar model assumptions}
 %  
 % \end{frame}
 
-\begin{frame}{Towards ambiguity inversion}
- \begin{block}{Ambiguity equation}
-  Represent matched filter ambiguity as linear system $X$:
-  \begin{equation*}
-   x[n,p] = X\left(h[n,p]\right) \quad\longrightarrow \text{Equation is non-invertible.}
-  \end{equation*}
- \end{block}
- \begin{block}{Make matched filtering explicit}
-  Let $A^*$ represent frequency-shifted matched filtering. Then
-  \begin{equation*}
-   X(h) = A^*\left(A(h)\right)
-  \end{equation*}
-  the ambiguity operation is matched filtering composed with its adjoint. Rewrite the ambiguity equation:
-  \begin{equation*}
-   A^*\left(y[m]\right) = A^*\left(A\left(h[n,p]\right)\right)
-  \end{equation*}
- \end{block}
-\end{frame}
-
-\begin{frame}{Sparsity of non-point targets}
- We have the exact equation:
- \begin{block}{Reflectivity coefficient equation}
-  \vspace{-2ex}
-  \begin{equation*}
-   h[n,p] = \int_{p \tau}^{(p+1)\tau} \left[h(f, \lambda) e^{2\pi i f \lambda} * b_{p + 1}(f) \right](n\Delta{f}) \dee\lambda
-  \end{equation*}
-  \vspace{-2ex}
- \end{block}
- \begin{itemize}
-  \item Blurring from wrapped sinc mostly preserves sparsity (evidenced by point target analysis)
-  \item Integration over delay exactly preserves sparsity
- \end{itemize}
- \begin{alertblock}{}
-  If a target has a sparse reflectivity function, we can reasonably expect its reflectivity coefficient representation to be sparse as well.
- \end{alertblock}
-\end{frame}
-
-\begin{frame}{The prox operator}
- The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
- \begin{equation*}
-  \mathbf{prox}_{\mu G} (v) = \argmin_{x} \; \left( G(x) + \frac{1}{2\mu} \norm{2}{x - v}^2 \right).
- \end{equation*}
- \begin{exampleblock}{Projection onto a set}
-  If $G(x)$ is the indicator function for a closed convex set $\mathcal{C}$,
-  \begin{equation*}
-   G(x) = \begin{cases}
-           0 & x \in \mathcal{C}\\
-           \infty & x \notin \mathcal{C}
-          \end{cases}
-  \end{equation*}
-  $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
- \end{exampleblock}
-\end{frame}
+% \begin{frame}{Towards ambiguity inversion}
+%  \begin{block}{Ambiguity equation}
+%   Represent matched filter ambiguity as linear system $X$:
+%   \begin{equation*}
+%    x[n,p] = X\left(h[n,p]\right) \quad\longrightarrow \text{Equation is non-invertible.}
+%   \end{equation*}
+%  \end{block}
+%  \begin{block}{Make matched filtering explicit}
+%   Let $A^*$ represent frequency-shifted matched filtering. Then
+%   \begin{equation*}
+%    X(h) = A^*\left(A(h)\right)
+%   \end{equation*}
+%   the ambiguity operation is matched filtering composed with its adjoint. Rewrite the ambiguity equation:
+%   \begin{equation*}
+%    A^*\left(y[m]\right) = A^*\left(A\left(h[n,p]\right)\right)
+%   \end{equation*}
+%  \end{block}
+% \end{frame}
+% 
+% \begin{frame}{Sparsity of non-point targets}
+%  We have the exact equation:
+%  \begin{block}{Reflectivity coefficient equation}
+%   \vspace{-2ex}
+%   \begin{equation*}
+%    h[n,p] = \int_{p \tau}^{(p+1)\tau} \left[h(f, \lambda) e^{2\pi i f \lambda} * b_{p + 1}(f) \right](n\Delta{f}) \dee\lambda
+%   \end{equation*}
+%   \vspace{-2ex}
+%  \end{block}
+%  \begin{itemize}
+%   \item Blurring from wrapped sinc mostly preserves sparsity (evidenced by point target analysis)
+%   \item Integration over delay exactly preserves sparsity
+%  \end{itemize}
+%  \begin{alertblock}{}
+%   If a target has a sparse reflectivity function, we can reasonably expect its reflectivity coefficient representation to be sparse as well.
+%  \end{alertblock}
+% \end{frame}
+% 
+% \begin{frame}{The prox operator}
+%  The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
+%  \begin{equation*}
+%   \mathbf{prox}_{\mu G} (v) = \argmin_{x} \; \left( G(x) + \frac{1}{2\mu} \norm{2}{x - v}^2 \right).
+%  \end{equation*}
+%  \begin{exampleblock}{Projection onto a set}
+%   If $G(x)$ is the indicator function for a closed convex set $\mathcal{C}$,
+%   \begin{equation*}
+%    G(x) = \begin{cases}
+%            0 & x \in \mathcal{C}\\
+%            \infty & x \notin \mathcal{C}
+%           \end{cases}
+%   \end{equation*}
+%   $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
+%  \end{exampleblock}
+% \end{frame}
 
 % \begin{frame}{Linearized ADMM}
 %  
