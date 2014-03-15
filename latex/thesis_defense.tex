@@ -45,7 +45,7 @@
 % graphics
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
-\graphicspath{{../figures/}}
+\graphicspath{{../figures/}{../movies/}}
 \usepackage{tikz,ifthen}
 \tikzstyle{image}=[inner sep=0pt]
 % includecoveredgraphics and covergraphics commands to enable image transparency
@@ -76,6 +76,9 @@
 \usepackage{mathtools} % for math stuff not provided by AMSmath
 \usepackage{multimedia} % movies
 \usepackage{appendixnumberbeamer} % do not include appendix slides in total frame number
+
+% hyperref after everything else
+\usepackage{hyperref}
 
 % define commands
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -164,7 +167,7 @@
    Plasma created by meteoroid entering the atmosphere.
   \end{definition}
   \raggedleft
-  \movie[autostart,loop,poster,width=2.1in,height=1.4in]{}{meteor_spectacular_double_shot.mp4}\\
+  \movie[autostart,loop,width=2.1in,height=1.4in]{\includegraphics[width=2.1in]{meteor_spectacular_double_shot}}{movies/meteor_spectacular_double_shot.mp4}\\
   {\tiny NASA (2011)}
  \end{columns}
 \end{frame}
@@ -491,7 +494,7 @@
  \begin{example}[Barker-13 code, Minimum sidelobe code]
  \end{example}
  \centering
- \movie[autostart,loop,poster,width=4in,height=1.501730in]{}{autocorrelation_animation_b13_msl.mp4}
+ \movie[autostart,loop,width=4in,height=1.501730in]{\includegraphics[width=4in]{autocorrelation_animation_b13_msl}}{movies/autocorrelation_animation_b13_msl.mp4}
 \end{frame}
 
 \subsection{Measurement Ambiguity}
@@ -879,7 +882,7 @@
 \begin{frame}{First-order step}{Smooth}
  If the function being minimized is differentiable, the most natural first-order step is a gradient step.
  \begin{center}
-  \movie[autostart,loop,poster,width=4in,height=2in]{}{gradient_descent_animation.mp4}
+  \movie[autostart,loop,width=4in,height=2in]{\includegraphics[width=4in]{gradient_descent_animation}}{movies/gradient_descent_animation.mp4}
  \end{center}
 \end{frame}
 
@@ -972,7 +975,7 @@
    \parbox[c][0.505in]{0.5\textwidth}{$h = \mathbf{soft}(h + A^*(z))$}\\
    \column{0.4\textwidth}
    \centering
-   \movie[autostart,loop,poster,width=1.85in,height=2.7in]{}{ist_animation.mp4}
+   \movie[autostart,loop,width=1.8in,height=2.7in]{\includegraphics[width=1.8in]{ist_animation}}{movies/ist_animation.mp4}
  \end{columns}
 \end{frame}
 
@@ -1044,7 +1047,7 @@
 \subsection{Waveform Inversion}
 
 \begin{frame}{Movie of meteor sidelobe removal}
- \movie[autostart,loop,poster,width=4.320687in,height=2.28in]{\includegraphics[width=\textwidth]{head_and_flare_mf_vs_recovered_1}}{head_and_flare_mf_vs_recovered_1.mp4}
+ \movie[autostart,loop,width=4.320687in,height=2.28in]{\includegraphics[width=4.320687in]{head_and_flare_mf_vs_recovered_1}}{movies/head_and_flare_mf_vs_recovered_1.mp4}
 \end{frame}
 
 \begin{frame}[t]{Example: Minimum sidelobe code}

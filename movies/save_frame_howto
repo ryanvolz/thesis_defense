@@ -1,0 +1,1 @@
+ffmpeg -i FILENAME -vframes 1 -ss TIMEINSEC out.png

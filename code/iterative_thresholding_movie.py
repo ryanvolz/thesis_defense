@@ -55,7 +55,7 @@ A = A/np.sqrt(np.sum(A**2, axis=0))
 y = np.dot(A, x)
 
 # set up figure
-fig = plt.figure(figsize=(1.85, 2.7))
+fig = plt.figure(figsize=(1.79, 2.7))
 gs = gridspec.GridSpec(5, 1)
 v = [axes_grid1.Size.Fixed(0.5)]
 h1 = [axes_grid1.Size.Fixed(1.75)]
@@ -109,7 +109,7 @@ txt = axs[0].text(5, 95, '', ha='left', va='top')
 
 artists = [ml0, ml1, ml2, ml3, ml4, sl1, tul, tll, txt] + sl0 + sl2 + sl3 + sl4
 
-plt.tight_layout(0.1)
+plt.tight_layout(0.1, h_pad=0.05)
 
 plt.draw() # need draw to update axes position
 # need the resolution to be multiples of 2 for libx264
