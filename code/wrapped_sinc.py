@@ -1,10 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import cPickle
-import copy
-import os
-
-import echolect as el
+import matplotlib as mpl
 
 params = {#'figure.subplot.left': 0.01,
           #'figure.subplot.bottom': 0.01,
@@ -12,18 +8,18 @@ params = {#'figure.subplot.left': 0.01,
           #'figure.subplot.top': .99,
           #'figure.subplot.wspace': .025,
           #'figure.subplot.hspace': .025,
-          'font.size': 10,
+          'font.size': 8,
           'font.family': 'sans-serif',
           'font.sans-serif': ['Linux Biolinum O', 'Arial', 'sans-serif'],
           'pdf.fonttype': 42,
           'ps.fonttype': 42,
           #'ps.usedistiller': 'pdftk',
-          'axes.titlesize': 10,
-          'axes.labelsize': 10,
-          'text.fontsize': 10,
-          'legend.fontsize': 10,
-          'xtick.labelsize': 8,
-          'ytick.labelsize': 8,
+          'axes.titlesize': 8,
+          'axes.labelsize': 8,
+          'text.fontsize': 8,
+          'legend.fontsize': 8,
+          'xtick.labelsize': 6,
+          'ytick.labelsize': 6,
           'lines.markersize': 1,
           'lines.linewidth': 0.45,
           'axes.linewidth': 0.45,
@@ -35,22 +31,25 @@ params = {#'figure.subplot.left': 0.01,
           #'text.latex.preamble': ['\usepackage{amsmath}']}
 plt.rcParams.update(params)
 
-basefilename = 'head_and_flare'
-with open(basefilename + '.pkl', 'rb') as f:
-    data = cPickle.load(f)
+N = 16
+f = np.fft.fftshift(np.fft.fftfreq(N*100))
+h = np.abs(np.sinc(N*f)/np.sinc(f))
 
-vlt = data.vlt[22].real
-
-plt.figure(figsize=(0.35, 1.1))
-plt.plot([0, 0], [0, -len(vlt)], color=(0.5, 0.5, 0.5))
-plt.plot(vlt, -np.arange(len(vlt)), color=(0.75, 0, 0.25))
+fig = plt.figure(figsize=(1.5,0.6))
+plt.plot(f, h, color=(0, 0.5, 0))
+plt.xlim(-0.5, 0.5)
+plt.xlabel('Normalized Frequency')
+plt.text(-0.45, 0.8, r'$|b_k(f)|$', va='top')
+plt.text(0.45, 0.8, r'$N={0}$'.format(N), va='top', ha='right')
 ax = plt.gca()
-ax.axes.get_xaxis().set_visible(False)
-ax.axes.get_yaxis().set_visible(False)
-plt.tight_layout(0)
+ax.xaxis.tick_bottom()
+ax.xaxis.labelpad = 1
+ax.yaxis.set_visible(False)
+ax.set_frame_on(False)
+plt.tight_layout(0.1)
 
-plt.savefig(basefilename + '_example_signal.pdf', dpi=180, 
-            bbox_inches='tight', pad_inches=0, transparent=True)
+fig.savefig('wrapped_sinc.pdf', bboz_inches='tight', 
+            pad_inches=0.01, transparent=True)
 
 plt.show()
 plt.close('all')

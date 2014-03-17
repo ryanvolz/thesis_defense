@@ -8,7 +8,7 @@ import echolect as el
 import radarmodel
 import spyalg
 
-basefilename = 'head_and_flare_lowpass'
+basefilename = 'head_and_flare'
 with open(basefilename + '.pkl', 'rb') as f:
     data = cPickle.load(f)
 

@@ -97,7 +97,8 @@
 	Department of Aeronautics and Astronautics\\
 	Stanford University
 }
-\date{}
+\titlegraphic{Advisor: Sigrid Close}
+\date{March 19, 2014}
 
 \begin{document}
 
@@ -139,6 +140,21 @@
    Ionization is principally caused by solar radiation.
   \end{block}
  \end{textblock}
+\end{frame}
+
+\begin{frame}{Importance of the ionosphere}{Communications}
+ \centering
+ \includegraphics[width=0.7\textwidth]{ionosphere_communications}
+ \begin{itemize}
+  \item Radio waves of lower frequency (less than $\approx 10$\ MHz) reflect off ionosphere.
+  \item Microwave frequencies (e.g. GPS) can pass through, but experience frequency-dependent refraction and delay.
+  \item Plasma irregularities additionally perturb signals.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Importance of the ionosphere}{Science of the geospace system}
+ \centering
+ \includegraphics[height=0.8\textheight]{ionosphereprocesses}
 \end{frame}
 
 \begin{frame}{Ionospheric environment: meteoroids and meteors}
@@ -203,21 +219,6 @@
  \end{columns}
  \centering
  \includegraphics[width=0.75\textwidth]{ImpactPlasmaExpansion}
-\end{frame}
-
-\begin{frame}{Importance of the ionosphere}{Communications}
- \centering
- \includegraphics[width=0.7\textwidth]{ionosphere_communications}
- \begin{itemize}
-  \item Radio waves of lower frequency (less than $\approx 10$\ MHz) reflect off ionosphere.
-  \item Microwave frequencies (e.g. GPS) can pass through, but experience frequency-dependent refraction and delay.
-  \item Plasma irregularities additionally perturb signals.
- \end{itemize}
-\end{frame}
-
-\begin{frame}{Importance of the ionosphere}{Science of the geospace system}
- \centering
- \includegraphics[height=0.8\textheight]{ionosphereprocesses}
 \end{frame}
 
 \subsection*{Radar Measurements}
@@ -331,6 +332,22 @@
 \end{frame}
 
 \subsection*{Sparsity}
+
+\begin{frame}{A way forward: sparsity}
+ Radar targets are typically sparse in range and frequency!
+ \begin{center}
+  \includegraphics{head_and_flare_mf_rti_3}
+ \end{center}
+ \begin{center}
+  \begin{minipage}{0.7\textwidth}
+   \begin{alertblock}{}
+    \centering
+    Can use sparsity to systematically improve the quality of radar measurements.
+   \end{alertblock}
+  \end{minipage}
+ \end{center}
+\end{frame}
+
 \begin{frame}{The world is sparse}
  \begin{definition}
   \vspace{-0.5ex}
@@ -405,21 +422,6 @@
  \end{columns}
 \end{frame}
 
-\begin{frame}{Sparsity and radar}
- Radar targets are typically sparse in range and frequency!
- \begin{center}
-  \includegraphics{head_and_flare_mf_rti_3}
- \end{center}
- \begin{center}
-  \begin{minipage}{0.7\textwidth}
-   \begin{alertblock}{}<2->
-    \centering
-    Can use sparsity to systematically improve the quality of radar measurements.
-   \end{alertblock}
-  \end{minipage}
- \end{center}
-\end{frame}
-
 \subsection*{}
 
 \begin{frame}<1-6>[label=contributions]{Contributions}
@@ -448,8 +450,7 @@
 \section{Radar Background}
 \subsection{Pulse Encoding/Decoding}
 
-\begin{frame}{Competing demands on radar measurements}
- Some objectives favor a shorter radar pulse, while others favor a longer radar pulse.
+\begin{frame}{Radar pulse length}
  \begin{columns}
   \column{0.5\textwidth}
   \begin{block}{Short pulse}
@@ -468,6 +469,8 @@
    \end{itemize}
   \end{block}
  \end{columns}
+ \vspace{2ex}
+ Some objectives favor a shorter radar pulse, while others favor a longer radar pulse.
 \end{frame}
 
 \begin{frame}{Coded pulses}
@@ -497,8 +500,6 @@
  \movie[autostart,loop,width=4in,height=1.501730in]{\includegraphics[width=4in]{autocorrelation_animation_b13_msl}}{movies/autocorrelation_animation_b13_msl.mp4}
 \end{frame}
 
-\subsection{Measurement Ambiguity}
-
 \begin{frame}{Frequency filter banks}
  \begin{block}{Doppler frequency shift}
   If the target is moving {\color{blue}toward} or {\color{red}away from} the radar, the reflected signal is frequency shifted {\color{blue}up} or {\color{red}{down}}.
@@ -518,6 +519,8 @@
   \includegraphics{ambiguity_barker13}
  \end{columns}
 \end{frame}
+
+\subsection{Measurement Ambiguity}
 
 \begin{frame}{Ambiguity functions}
  \begin{definition}
@@ -564,7 +567,7 @@
 \end{frame}
 
 \begin{frame}{Effect of sidelobes}
- Sidelobes are the primary reason that outstanding ionospheric science questions cannot be satisfactorily answered.
+ Sidelobes (delay-frequency ambiguity) are the primary reason that outstanding ionospheric science questions cannot be satisfactorily answered.
  \vspace{1ex}
  \begin{columns}
   \column{0.25\textwidth}
@@ -588,38 +591,6 @@
  \end{columns}
 \end{frame}
 
-\subsection{Current Techniques}
-
-\begin{frame}{Sidelobe mitigation}
- \begin{block}{Delay-frequency sidelobe mitigation in use}
-  \begin{itemize}
-   \item Careful code selection and \alert{ignoring remaining sidelobes}
-   \item Multiple-pulse alternating codes
-   \item Range sidelobe inverse filters
-  \end{itemize}
- \end{block}
- These strategies severely constrain the \alert{flexibility} and \alert{accuracy} of ionospheric radar measurements!
-\end{frame}
-
-\begin{frame}{Inverse filter ambiguity function}
- \begin{definition}
-  The \alert{inverse filter} is designed to produce no delay sidelobes (for loss of SNR) if filtering is done at the target's frequency.
- \end{definition}
- \begin{columns}
-  \column{0.5\textwidth}
-  \centering
-  Barker-13 Matched\\
-  \includegraphics{ambiguity_barker13}
-  \column{0.5\textwidth}
-  \centering
-  Barker-13 Inverse\\
-  \includegraphics{inverse_ambiguity_barker13}
- \end{columns}
- \begin{alertblock}{}
-  No advantage if Doppler shift is unknown or multiple frequencies must be decoded!
- \end{alertblock}
-\end{frame}
-
 \begin{frame}{Goal: sidelobe removal}
  \begin{tikzpicture}
   \tikzstyle{every node}=[minimum width=\widthof{Near-ideal}+2ex]
@@ -632,38 +603,83 @@
  Infinite number of ways to decode and get a target scene that reproduces the measurements!
 \end{frame}
 
-\section{Radar Model}
+\subsection{Current Techniques}
+
+\begin{frame}{Delay-frequency sidelobe mitigation in use}
+ \begin{enumerate}
+  \item Codes with good sidelobe properties
+  \begin{itemize}
+   \item e.g. Barker-13, minimum peak sidelobe, LFM chirp
+   \item Most prevalent strategy
+   \item Only effective when it is simple to \alert{ignore remaining sidelobes}
+  \end{itemize}
+  \item Alternating codes
+  \begin{itemize}
+   \item Set of codes over multiple pulses
+   \item When pulses summed together, sidelobes cancel
+   \item Target properties must remain stationary
+  \end{itemize}
+  \item Inverse filters
+  \begin{itemize}
+   \item Alternative to matched filter
+   \item Loss of SNR depending on code
+   \item Produces no range sidelobes at target's frequency shift
+  \end{itemize}
+ \end{enumerate}
+ These strategies severely constrain the \alert{flexibility} and \alert{accuracy} of ionospheric radar measurements!
+\end{frame}
+
+\begin{frame}{Inverse filter ambiguity function}
+ \begin{example}
+  Ambiguity function comparison for Barker-13 code.
+ \end{example}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \centering
+  Matched filter\\
+  \includegraphics{ambiguity_barker13}
+  \column{0.5\textwidth}
+  \centering
+  Inverse filter\\
+  \includegraphics{inverse_ambiguity_barker13}
+ \end{columns}
+ \begin{alertblock}{}
+  No advantage if Doppler shift is unknown or multiple frequencies must be decoded!
+ \end{alertblock}
+\end{frame}
+
+\section{My Radar Model}
 \subsection{Defining the Model}
 
 \begin{frame}{Matched filtering as imaging}
  \begin{block}{Imaging analogy}
-  Measured "image" is blurred by the ambiguity function:
+  Matched filter "image" is blurred by the ambiguity function:
   \begin{equation*}
-   {\color{purple}x[n,p]} = {\color{blue}\chi[n,p]} * {\color{red}h[n,p]}
+   {\color{red}h[n,p]} * {\color{blue}\chi[n,p]} = {\color{purple}x[n,p]}
   \end{equation*}
   \vspace{-2ex}
   \begin{columns}[onlytextwidth]
    \column{0.33\textwidth}
    \centering
-   {\color{purple}Matched filter result\\(measured image)}
-   \column{0.33\textwidth}
-   \centering
-   {\color{blue}Ambiguity\\function}
-   \column{0.33\textwidth}
-   \centering
    {\color{red}Target reflectivity\\(source image)}
+   \column{0.33\textwidth}
+   \centering
+   {\color{blue}Ambiguity function\\(point-spread func.)}
+   \column{0.33\textwidth}
+   \centering
+   {\color{purple}Matched filter result\\(measured image)}
   \end{columns}
  \end{block}
  \begin{columns}[onlytextwidth]
   \column{0.33\textwidth}
   \centering
-  \includegraphics<1>{blurred_image_example_blurred}
+  \includegraphics<1>{blurred_image_example_orig}
   \column{0.33\textwidth}
   \centering
   \includegraphics<1>{blurred_image_example_kernel}
   \column{0.33\textwidth}
   \centering
-  \includegraphics<1>{blurred_image_example_orig}
+  \includegraphics<1>{blurred_image_example_blurred}
  \end{columns}
 \end{frame}
 
@@ -671,11 +687,26 @@
  \begin{columns}
   \column{0.5\textwidth}
   \begin{block}{Ambiguity equation}
-   \vspace{-2ex}
-   \begin{equation*}
-    A^*\left(y[m]\right) = A^*\left(A\left(h[n,p]\right)\right)
-   \end{equation*}
+   \vspace{-4ex}\begin{align*}
+    x[n,p] &= \chi[n,p] * h[n,p]\\[2ex]
+    A^*\left(y[m]\right) 
+    &= A^*\left(A\left(h[n,p]\right)\right)
+   \end{align*}\vspace{-4ex}
   \end{block}
+  \column{0.5\textwidth}
+  \begin{itemize}
+   \item Matched filtering is $A^*$
+   \item Ambiguity function is $A^*A$
+   \item Indices: \begin{tabular}{cc}
+          $m$ & sample\\
+          $n$ & frequency\\
+          $p$ & delay
+         \end{tabular}
+  \end{itemize}
+ \end{columns}
+ \vspace{4ex}
+ \begin{columns}
+  \column{0.5\textwidth}
   \begin{block}{Radar model}
    Simplify by removing excess matched filtering operation:
    \begin{equation*}
@@ -696,15 +727,14 @@
   \end{block}
   \column{0.5\textwidth}
   \begin{itemize}
-   \item Matched filtering is $A^*$
-   \item Radar model is simply adjoint of matched filter\\(\alert{remember for later})
+   \item Radar model is \alert{adjoint} (conjugate transpose) of matched filter
    \item Non-invertible because under-determined
    \item Sparsity of target reflectivity is key to solution
   \end{itemize}
  \end{columns}
 \end{frame}
 
-\begin{frame}{Alternative interpretation}
+\begin{frame}<1>{Alternative interpretation}
  \vspace{-2ex}
  \begin{columns}
   \column{0.5\textwidth}
@@ -718,14 +748,18 @@
   \centering
   Grid of point targets
   \includegraphics{range_doppler_discretization}
-  \begin{equation*}
-   y = A({\color{purple!70!white}h[n,p]})
-  \end{equation*}
+  \only<1>{
+   \begin{equation*}
+    y = A({\color{purple!70!white}h[n,p]})
+   \end{equation*}
+  }
  \end{columns}
-%  \vspace{-1ex}
-%  \begin{equation*}
-%   y[m] = \sum_{p=0}^{P-1} \frac{1}{\sqrt{N}} s[m - p + L - 1] \left(\sum_{n=0}^{N-1} e^{2\pi i n m / N} h[n,p] \right)
-%  \end{equation*}
+ \only<2>{
+ \vspace{-1ex}
+  \begin{equation*}
+   y[m] = \sum_{p=0}^{P-1} \frac{1}{\sqrt{N}} s[m - p + L - 1] \left(\sum_{n=0}^{N-1} e^{2\pi i n m / N} h[n,p] \right)
+  \end{equation*}
+ }
 \end{frame}
 
 \subsection{Representation of Targets}
@@ -734,21 +768,35 @@
  \begin{block}{Narrow-band radar equation for received signal}
   \vspace{-2ex}
   \begin{equation*}
-   y(t) = \int_0^T \int_{-\infty}^{\infty} s(t - \lambda) e^{2\pi i f (t - \lambda)} h(f, \lambda) \dee{f} \dee\lambda
+   {\color{purple}y(t)} = \int_0^T \int_{-\infty}^{\infty} {\color{green!50!black}s(t - \lambda)} {\color{blue}e^{2\pi i f (t - \lambda)}} {\color{red}h(f, \lambda)} \dee{f} \dee\lambda
   \end{equation*}
   \vspace{-2ex}
  \end{block}
- Discretization process:
- \begin{itemize}
-  \item Sample measurements with time spacing $\tau$
-  \item Discretize transmitted signal with spacing $\tau$ at $L$ points
-  \item Discretize delay with spacing $\tau$ at $P$ points
-  \item Discretize frequency with spacing $\Delta{f}$ at $N$ points
- \end{itemize}
+ \begin{columns}[onlytextwidth]
+  \column{0.25\textwidth}
+  \centering
+  {\color{purple}Measured signal}
+  \column{0.25\textwidth}
+  \centering
+  {\color{green!50!black}Transmitted signal}
+  \column{0.25\textwidth}
+  \centering
+  {\color{blue}Frequency shift}
+  \column{0.25\textwidth}
+  \centering
+  {\color{red}Target reflectivity}
+ \end{columns}
+ \begin{center}
+  \begin{tabular}{llc}
+   $t$ & Sample time & $y(m\tau) \rightarrow y[m]$\\
+   $f$ & Frequency & $h(n\phi, :) \rightsquigarrow h[n, :]$\\
+   $\lambda$ & Delay & $h(:, p\tau) \rightsquigarrow h[:, p]$
+  \end{tabular}
+ \end{center}
  \begin{block}{Discretized radar model}
-  \vspace{-2ex}
+  \vspace{-4ex}
   \begin{equation*}
-   y[m] = \sum_{p=0}^{P-1} \sum_{n=0}^{N-1} \frac{1}{\sqrt{N}} s[m - p + L - 1] e^{2\pi i n m / N} h[n,p] = A(h)
+   {\color{purple}y[m]} = \sum_{p=0}^{P-1} \sum_{n=0}^{N-1} \frac{1}{\sqrt{N}} {\color{green!50!black}s[m - p + L - 1]} {\color{blue}e^{2\pi i n m / N}} {\color{red}h[n,p]} = A(h)
   \end{equation*}
   \vspace{-2ex}
  \end{block}
@@ -757,15 +805,20 @@
 \begin{frame}{Reflectivity coefficients from function}
  From discretization process, can write the "point target" reflectivity coefficients in terms of the original function:
  \begin{equation*}
-  h[n,p] = \int_{p \tau}^{(p+1)\tau} \left[h(f, \lambda) e^{2\pi i f \lambda} * b_{p + 1}(f) \right](n\Delta{f}) \dee\lambda
+  {\color{red}h[n,p]} = \int_{{\color{purple}p \tau}}^{{\color{purple}(p+1)\tau}} \left[{\color{red}h(f, \lambda)} e^{2\pi i f \lambda} * {\color{green!50!black}b_{p + 1}(f)} \right]({\color{blue}n\phi}) \dee\lambda
  \end{equation*}
  \begin{enumerate}
-  \item Blur in frequency by convolving with wrapped sinc function:
-  \begin{equation*}
-   b_{k}(f) = \frac{1}{N} e^{-\pi i (2k + N - 1) \tau f} \frac{\sin(N \pi \tau f)}{\sin(\pi \tau f)}
-  \end{equation*}
-  \item Sample at discretized frequency point
-  \item Integrate over delay window of discretized delay point
+  \item Blur in frequency by convolving with wrapped sinc function:\\
+  \begin{columns}[onlytextwidth]
+   \column{0.65\textwidth}
+   \begin{equation*}
+    {\color{green!50!black}b_{k}(f)} = \frac{1}{N} e^{-\pi i (2k + N - 1) \tau f} \frac{\sin(N \pi \tau f)}{\sin(\pi \tau f)}
+   \end{equation*}
+   \column{0.35\textwidth}
+   \includegraphics{wrapped_sinc}
+  \end{columns}%
+  \item Sample at discretized frequency point ${\color{blue}n\phi}$
+  \item Integrate over delay window of discretized delay point ${\color{purple}p\tau}$
  \end{enumerate}
 \end{frame}
 
@@ -781,7 +834,7 @@
  \end{alertblock}
 \end{frame}
 
-\section{Waveform Inversion}
+\section{Sparsity Background}
 \subsection{Compressed Sensing}
 
 \begin{frame}{Under-determined systems of equations}
@@ -810,7 +863,9 @@
     \end{bmatrix}}
    $%\end{equation*}
   \column{0.3\textwidth}
-  \includegraphics[width=\textwidth]{range_doppler_discretization}
+  \centering
+  \includegraphics[width=\textwidth]{range_doppler_discretization}\\
+  \textcolor{red}{(vectorized as $h$)}
  \end{columns}
  
  \begin{center}
@@ -830,8 +885,8 @@
  \begin{block}{Approximate guidelines for application}
   \begin{itemize}
    \item Solution known to be sparse
-   \item Measurements are "incoherent" (global)
-   \item Minimum number of measurements on the order of the solution sparsity
+   \item Measurements are "incoherent" (global with low correlation)
+   \item Minimum number of measurements on the order of the solution sparsity (number of nonzeros)
   \end{itemize}
  \end{block}
  \begin{block}{Benefit}
@@ -979,9 +1034,79 @@
  \end{columns}
 \end{frame}
 
-\section{Results}
+\section{Waveform Inversion}
 
-\subsection{Experimental Setup}
+\subsection{Implementation}
+
+\begin{frame}{Combined algorithmic advances}
+ First order prox algorithms are an active research area, so I tested and combined multiple proposed enhancements.
+ \begin{columns}
+  \column{0.5\textwidth}
+   \begin{enumerate}
+    \item Accelerated proximal gradient method
+    \begin{itemize}
+     \item Adds simple "momentum" term
+     \item Better theoretical convergence
+    \end{itemize}
+    \item Adaptive restart
+    \begin{itemize}
+     \item Reset acceleration when it opposes prior step
+    \end{itemize}
+    \item Adaptive step size
+    \begin{itemize}
+     \item Increase step size every iteration
+     \item Decrease as necessary to ensure convergence
+    \end{itemize}
+   \end{enumerate}
+
+  \column{0.5\textwidth}
+  \centering
+  \begin{exampleblock}{Convergence comparison}
+   \begin{tabular}{cc}
+    Method & Iterations\\\hline
+    Prox gradient & 4463\\
+    + Acceleration & 2911\\
+    + Adaptive restart & 397\\
+    + Adaptive step & 105
+   \end{tabular}
+  \end{exampleblock}
+ \end{columns}
+\end{frame}
+
+\begin{frame}{Testing similar algorithms}
+ Other prox-based algorithms are worthy of consideration:
+ \begin{itemize}
+  \item Linearized alternating direction method of multipliers (ADMM)
+  \item Primal-dual hybrid gradient (PDHG)
+ \end{itemize}
+
+ 
+ These both solve
+ \begin{equation*}
+  \underset{x}{\text{minimize}} \quad F(x) + G(x)
+ \end{equation*}
+ when both $F(x)$ and $G(x)$ can be non-smooth.
+ \begin{exampleblock}{Convergence comparison}
+  \centering
+  \begin{tabular}{cc}
+   Method & Iterations\\\hline
+   Accelerated proximal gradient & 105\\
+   Linearized ADMM (with adaptive step) & 154\\
+   PDHG (fixed step) & 4464
+  \end{tabular}
+ \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Code}
+ Python/Cython/Numba
+\end{frame}
+
+\begin{frame}{Interpretation}
+ Iterative thresholding matched filter
+ Sparse solution to sidelobe removal
+\end{frame}
+
+\subsection{Experimental Results}
 
 \begin{frame}{The Jicamarca incoherent scatter radar}
  \begin{columns}
@@ -1043,8 +1168,6 @@
  \vspace{2ex}
  \includegraphics{head_and_flare_mf_rti_block}
 \end{frame}
-
-\subsection{Waveform Inversion}
 
 \begin{frame}{Movie of meteor sidelobe removal}
  \movie[autostart,loop,width=4.320687in,height=2.28in]{\includegraphics[width=4.320687in]{head_and_flare_mf_vs_recovered_1}}{movies/head_and_flare_mf_vs_recovered_1.mp4}
@@ -1144,17 +1267,19 @@
  \begin{columns}
   \column{0.5\textwidth}
   \begin{enumerate}
-   \item \alert{Removes sidelobes} -\\
-   Differentiates in delay and frequency for use in a crowded environment and for range-spread targets
-   \item \alert{High resolution} -\\
-   Enables observation of small-scale processes\\
-   \item \alert{Flexible} -\\
-   Can use many different waveforms
+   \item \alert{Sidelobe removal} -\\
+   Removes ambiguity for observation of multiple or range-spread targets\\
+   (e.g. fragmentation and non-specular trails)
+   \item \alert{Full frequency decoding} -\\
+   Decodes over full frequency spectrum simultaneously, for target differentiation in crowded environments\\
+   (e.g. equatorial, flares)
+   \item \alert{Flexibility} -\\
+   Enables use of many different waveforms
   \end{enumerate}
  \column{0.5\textwidth}
- \includegraphics[width=\textwidth]{equatorial_example_mf_rti_3}\\
+ \includegraphics[width=\textwidth]{mathews_fragmentation}\\
  \includegraphics[width=\textwidth]{head_and_flare_mf_rti_3}\\
- \includegraphics[width=\textwidth]{mathews_fragmentation}
+ \includegraphics[width=\textwidth]{equatorial_example_mf_rti_3}
  \end{columns}
 \end{frame}
 
@@ -1168,16 +1293,16 @@
   Iteratively solve for reflectivity \emph{and} transmitted waveform to better characterized the radar system.
  \end{block}
  \begin{block}{Passive radar}
-  Waveform flexibility invites use in passive radar where the transmitted waveform cannot be controlled.
+  Waveform flexibility invites use for parasitic radio science (using FM radio, digital TV signals) where the transmitted waveform cannot be controlled.
  \end{block}
 \end{frame}
 
-% \begin{frame}{Acknowledgements}
-%  
-% \end{frame}
+\begin{frame}{Acknowledgements}
+ 
+\end{frame}
 
 \begin{frame}{Questions}
- 
+ \tableofcontents
 \end{frame}
 
 \appendix
@@ -1196,6 +1321,10 @@
 %    \item Maximum signal-to-noise ratio (SNR) at peak of all filters
 %   \end{itemize}
 %  \end{block}
+% \end{frame}
+
+% \begin{frame}{Ambiguity between measurement and target}
+%  
 % \end{frame}
 
 % \begin{frame}{Radar model assumptions}
