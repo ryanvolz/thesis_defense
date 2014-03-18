@@ -133,7 +133,7 @@
   
  \begin{textblock}{0.47}(0.25,0.41)
   \begin{definition}
-   The \alert{ionosphere} is a region of \alert{partially ionized gas (plasma)} that envelops the Earth from an altitude of about 60 km and higher.
+   The \alert{ionosphere} is a region of \alert{partially ionized gas (plasma)} that envelops the Earth from an altitude of approximately 60 km to 1000 km.
   \end{definition}
   \vspace{-1ex}
   \begin{block}{Mechanism}
@@ -153,11 +153,25 @@
 \end{frame}
 
 \begin{frame}{Importance of the ionosphere}{Science of the geospace system}
- \centering
- \includegraphics[height=0.8\textheight]{ionosphereprocesses}
+ \tikzstyle{meteoroid}=[circle,draw=red,fill=red,inner sep=0pt,minimum size=4pt]
+ \tikzstyle{meteoroid_line}=[red,arrows=-latex]
+ \makebox[\textwidth][c]{\begin{tikzpicture}
+  \node[image] at (0,0) {\includegraphics[width=4in]{ionosphereprocesses}};
+  \node (meteoroid_source0) at (0.9in, 1.25in) [meteoroid,
+                                               label={[red]above right:Meteoroids}] {};
+  \draw[meteoroid_line] (meteoroid_source0) -- (0.55in, 0.75in);
+  \node (meteoroid_source1) at (1.1in, 1.25in) [meteoroid] {};
+  \draw[meteoroid_line] (meteoroid_source1) -- (0.75in, 0.75in);
+  \node (meteoroid_source2) at (1.3in, 1.25in) [meteoroid] {};
+  \draw[meteoroid_line] (meteoroid_source2) -- (0.95in, 0.75in);
+  \node (meteoroid_source3) at (1.5in, 1.25in) [meteoroid] {};
+  \draw[meteoroid_line] (meteoroid_source3) -- (1.15in, 0.75in);
+  
+  \draw[red] (-1.45in, 0.2in) rectangle (-0.2in, 1.25in);
+ \end{tikzpicture}}
 \end{frame}
 
-\begin{frame}{Ionospheric environment: meteoroids and meteors}
+\begin{frame}{Space weather: meteoroids and meteors}
  \begin{columns}
   \column{0.5\textwidth}
   \begin{definition}[Meteoroid]
@@ -180,7 +194,10 @@
   \end{columns}
   \column{0.5\textwidth}
   \begin{definition}[Meteor]
-   Plasma created by meteoroid entering the atmosphere.
+   \begin{itemize}
+    \item Plasma created by meteoroid entering the atmosphere
+    \item Typically form at altitudes between 80 km and 120 km
+   \end{itemize}
   \end{definition}
   \raggedleft
   \movie[autostart,loop,width=2.1in,height=1.4in]{\includegraphics[width=2.1in]{meteor_spectacular_double_shot}}{movies/meteor_spectacular_double_shot.mp4}\\
@@ -225,7 +242,7 @@
 
 \begin{frame}{Measuring the ionosphere}
  \begin{definition}
-  \alert{Incoherent Scatter Radars} (ISRs, locations shown {\color{red}below}) are radars sensitive enough to measure scattering from electrons in the background ionosphere.
+  \alert{Incoherent Scatter Radars} (ISRs, locations shown \textcolor{red}{below}) are radars sensitive enough to measure scattering from electrons in the background ionosphere.
  \end{definition}
  \includegraphics<1>[width=\textwidth]{isr_map}
  \includegraphics<2>[width=\textwidth]{isr_map_pfisr}
@@ -234,22 +251,39 @@
  
  \vspace{2ex}
  Range of ionospheric regions: \onslide<2>{polar,} \onslide<3>{mid-latitude,} \onslide<4>{equatorial.}
- \begin{textblock}{0.5}(0.25,0.525)
+ \begin{textblock}{0.25}(0.675,0.43)
   \only<2>{
-  \includegraphics[height=3.6cm]{pfisr}\\
-  \vspace{-3.6cm}{\color{white}\ \textbf{PFISR}}
+   \includegraphics[height=2.3cm]{Polarlicht_2}\\
+   \vspace{-2.3cm}\textcolor{white}{\ \textbf{Aurora}}
   }
  \end{textblock}
- \begin{textblock}{0.5}(0.425,0.42)
+ \begin{textblock}{0.5}(0.05,0.55)
+  \only<2>{
+   \includegraphics[height=3.2cm]{pfisr}\\
+   \vspace{-3.2cm}\textcolor{white}{\ \textbf{PFISR}}
+  }
+ \end{textblock}
+ \begin{textblock}{0.5}(0.05,0.655)
   \only<3>{
-  \includegraphics[height=4.75cm]{millstone_hill_radar}\\
-  \vspace{-4.75cm}\ \textbf{Millstone Hill}
+   \includegraphics[height=2.5cm]{geomagnetic_storm}\\
+   \vspace{-2.5cm}\textcolor{white}{\ \textbf{Geomagnetic storm}}
+  }
+ \end{textblock}
+ \begin{textblock}{0.5}(0.45,0.42)
+  \only<3>{
+   \includegraphics[height=4.75cm]{millstone_hill_radar}\\
+   \vspace{-4.75cm}\ \textbf{Millstone Hill}
+  }
+ \end{textblock}
+ \begin{textblock}{0.5}(0.025,0.55)
+  \only<4>{
+   \includegraphics[height=3cm]{earth_magnetic_dipole}
   }
  \end{textblock}
  \begin{textblock}{0.5}(0.425,0.525)
   \only<4>{
-  \includegraphics[height=3.6cm]{jicamarca_and_me}\\
-  \vspace{-3.6cm}\ \textbf{Jicamarca}
+   \includegraphics[height=3.6cm]{jicamarca_and_me}\\
+   \vspace{-3.6cm}\ \textbf{Jicamarca}
   }
  \end{textblock}
 \end{frame}
@@ -257,7 +291,7 @@
 \begin{frame}{Radar meteors}
  \begin{block}{Types of scattering}
   \begin{itemize}
-   \item {\color{green!80!black}Head}: ball of plasma surrounding the meteoroid
+   \item {\color{green!80!black}Head}: ball of plasma traveling with the meteoroid
    \item {\color{purple}Trail}: plasma left in wake of meteoroid
   \end{itemize}
  \end{block}
@@ -267,6 +301,7 @@
   \draw[purple] (2.8,2) rectangle (8.2,3.25);
   \draw[green!80!black,shift={(2.2,2.45)},rotate=-55] (-1.2,-0.15) rectangle (1.2,0.15);
  \end{tikzpicture}
+ Time of Radar Pulse
 \end{frame}
 
 \begin{frame}{Variety of ionospheric plasma}
@@ -428,8 +463,8 @@
  In order to enable \alert{flexible high-resolution measurements} of ionospheric plasma phenomena, including interfering and range-spread targets, I made the following contributions:
  \begin{enumerate}
   \item<2,8-> Derived a discrete \alert{radar model} that captures signal sparsity in delay-frequency space.
-  \item<3,9-> Uncovered the adjoint relationship between the model and existing matched filter techniques, resulting in an \alert{intuitive interpretation} of the waveform inversion process.
-  \item<4,10-> \alert{Analyzed the model} to show how it exactly represents off-grid and distributed scatterers and preserves their sparsity.
+  \item<3,9-> Uncovered the adjoint relationship between the model and existing matched filter techniques, giving an \alert{intuitive interpretation} of waveform inversion as iterative filtering.
+  \item<4,10-> \alert{Analyzed the model} to show how it exactly represents distributed scatterers and preserves their sparsity.
   \item<5,11-> Created and tuned an \alert{efficient implementation} of waveform inversion using modern convex optimization techniques.
   \item<6,12-> \alert{Demonstrated the flexibility and effectiveness} of the inversion technique by removing filtering artifacts from meteor observations made with a variety of radar waveforms.
  \end{enumerate}
@@ -451,12 +486,13 @@
 \subsection{Pulse Encoding/Decoding}
 
 \begin{frame}{Radar pulse length}
+ Some applications favor a shorter radar pulse, while others favor a longer radar pulse.
  \begin{columns}
   \column{0.5\textwidth}
   \begin{block}{Short pulse}
    \includegraphics[width=\textwidth]{shortpulse}
    \begin{itemize}
-    \item Low range ambiguity
+    \item Low range ambiguity (interference region for multiple scatterers)
     \item Simple to interpret
    \end{itemize}
   \end{block}
@@ -464,13 +500,11 @@
   \begin{block}{Long pulse}
    \includegraphics[width=\textwidth]{longpulse}
    \begin{itemize}
-    \item Fine frequency resolution
+    \item Fine frequency resolution (observe target as it evolves in time)
     \item High total power
    \end{itemize}
   \end{block}
  \end{columns}
- \vspace{2ex}
- Some objectives favor a shorter radar pulse, while others favor a longer radar pulse.
 \end{frame}
 
 \begin{frame}{Coded pulses}
@@ -670,17 +704,13 @@
    {\color{purple}Matched filter result\\(measured image)}
   \end{columns}
  \end{block}
- \begin{columns}[onlytextwidth]
-  \column{0.33\textwidth}
-  \centering
-  \includegraphics<1>{blurred_image_example_orig}
-  \column{0.33\textwidth}
-  \centering
-  \includegraphics<1>{blurred_image_example_kernel}
-  \column{0.33\textwidth}
-  \centering
-  \includegraphics<1>{blurred_image_example_blurred}
- \end{columns}
+ \begin{minipage}[c]{\textwidth}
+  \raisebox{-0.5\height}{\includegraphics{blurred_image_example_orig}}
+  \raisebox{-0.5\height}{$*$}
+  \raisebox{-0.5\height}{\includegraphics{blurred_image_example_kernel}}
+  \raisebox{-0.5\height}{$=$}
+  \raisebox{-0.5\height}{\includegraphics{blurred_image_example_blurred}}
+ \end{minipage}
 \end{frame}
 
 \begin{frame}{Radar model from matched filter}
@@ -787,10 +817,10 @@
   {\color{red}Target reflectivity}
  \end{columns}
  \begin{center}
-  \begin{tabular}{llc}
-   $t$ & Sample time & $y(m\tau) \rightarrow y[m]$\\
-   $f$ & Frequency & $h(n\phi, :) \rightsquigarrow h[n, :]$\\
-   $\lambda$ & Delay & $h(:, p\tau) \rightsquigarrow h[:, p]$
+  \begin{tabular}{llcc}
+   $t$ & Sample time & $y(m\tau) \rightarrow y[m]$ & $m = 0, 1, \ldots, M-1$\\
+   $f$ & Frequency & $h(n\phi, :) \rightsquigarrow h[n, :]$ & $n = 0, 1, \ldots, N-1$\\
+   $\lambda$ & Delay & $h(:, p\tau) \rightsquigarrow h[:, p]$ & $p = 0, 1, \ldots, P-1$
   \end{tabular}
  \end{center}
  \begin{block}{Discretized radar model}
@@ -803,7 +833,7 @@
 \end{frame}
 
 \begin{frame}{Reflectivity coefficients from function}
- From discretization process, can write the "point target" reflectivity coefficients in terms of the original function:
+ Can write the "point target" reflectivity coefficients in terms of the original reflectivity function:
  \begin{equation*}
   {\color{red}h[n,p]} = \int_{{\color{purple}p \tau}}^{{\color{purple}(p+1)\tau}} \left[{\color{red}h(f, \lambda)} e^{2\pi i f \lambda} * {\color{green!50!black}b_{p + 1}(f)} \right]({\color{blue}n\phi}) \dee\lambda
  \end{equation*}
@@ -826,9 +856,10 @@
  Off-grid point targets are still relatively sparse!
  \begin{itemize}
   \item All coefficients outside delay window $p_t$ are zero
-  \item For frequency index, behavior dictated by wrapped sinc:
+  \item For frequency index $n = 0, 1, \ldots, N-1$, behavior dictated by wrapped sinc:
  \end{itemize}
  \includegraphics{point_target_coefficients}
+ \vspace{-2ex}
  \begin{alertblock}{}
   Relative sparsity improves with increasing $N$\\(same number significant coefficients, many more zeros)
  \end{alertblock}
@@ -1013,13 +1044,13 @@
 \begin{frame}{Iterative Soft Thresholding}
  \begin{columns}
    \column{0.6\textwidth}
-   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Guess:}%
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Guess\\(e.g. reflectivity):}%
    \hspace{0.05\textwidth}%
    \parbox[c][0.505in]{0.5\textwidth}{$h$}\\
-   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Forward model, calculate error:}%
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Calculate error:}%
    \hspace{0.05\textwidth}%
    \parbox[c][0.505in]{0.5\textwidth}{$z = y - A(h)$}\\
-   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Matched filtering of error:}%
+   \parbox[c][0.505in]{0.45\textwidth}{\raggedright Matched filter the error:}%
    \hspace{0.05\textwidth}%
    \parbox[c][0.505in]{0.5\textwidth}{$A^*(z)$}\\
    \parbox[c][0.505in]{0.45\textwidth}{\raggedright Add previous guess:}%
@@ -1032,6 +1063,8 @@
    \centering
    \movie[autostart,loop,width=1.8in,height=2.7in]{\includegraphics[width=1.8in]{ist_animation}}{movies/ist_animation.mp4}
  \end{columns}
+ \vspace{1ex}
+ \alert{Interpretation}: iterative matched filtering with thresholding!
 \end{frame}
 
 \section{Waveform Inversion}
@@ -1039,7 +1072,7 @@
 \subsection{Implementation}
 
 \begin{frame}{Combined algorithmic advances}
- First order prox algorithms are an active research area, so I tested and combined multiple proposed enhancements.
+ First order prox algorithms are an active research area, so I tested and combined multiple proposed enhancements:
  \begin{columns}
   \column{0.5\textwidth}
    \begin{enumerate}
@@ -1080,8 +1113,7 @@
   \item Primal-dual hybrid gradient (PDHG)
  \end{itemize}
 
- 
- These both solve
+ Closely related, these both solve
  \begin{equation*}
   \underset{x}{\text{minimize}} \quad F(x) + G(x)
  \end{equation*}
@@ -1091,19 +1123,38 @@
   \begin{tabular}{cc}
    Method & Iterations\\\hline
    Accelerated proximal gradient & 105\\
-   Linearized ADMM (with adaptive step) & 154\\
-   PDHG (fixed step) & 4464
+   Linearized ADMM (novel adaptive step) & 154\\
+   PDHG (standard fixed step) & 4464
   \end{tabular}
  \end{exampleblock}
 \end{frame}
 
 \begin{frame}{Code}
- Python/Cython/Numba
-\end{frame}
-
-\begin{frame}{Interpretation}
- Iterative thresholding matched filter
- Sparse solution to sidelobe removal
+ \begin{columns}
+  \column{0.4\textwidth}
+  \begin{block}{Principles}
+   \begin{enumerate}
+    \item Easy to develop
+    \item Fast when necessary
+    \item Freely available for collaboration and community use
+   \end{enumerate}
+  \end{block}
+  \column{0.6\textwidth}
+  \begin{block}{Answers}
+   \begin{enumerate}
+    \item Python with NumPy
+    \item Radar model is bottleneck: implement with Cython or Numba
+    \item Available on github: \href{https://github.com/ryanvolz}{github.com/ryanvolz}
+   \end{enumerate}
+  \end{block}
+ \end{columns}
+ \includegraphics[width=0.225\textwidth]{python-logo-master-v3-TM}
+ \hfill
+ \includegraphics[width=0.225\textwidth]{numpy_logo}
+ \hfill
+ \includegraphics[width=0.225\textwidth]{cython_logo}
+ \hfill
+ \includegraphics[width=0.225\textwidth]{GitHub_Logo}
 \end{frame}
 
 \subsection{Experimental Results}
@@ -1170,7 +1221,11 @@
 \end{frame}
 
 \begin{frame}{Movie of meteor sidelobe removal}
+ Decoding comparison for minimum sidelobe code:
  \movie[autostart,loop,width=4.320687in,height=2.28in]{\includegraphics[width=4.320687in]{head_and_flare_mf_vs_recovered_1}}{movies/head_and_flare_mf_vs_recovered_1.mp4}
+ \begin{center}
+  (Total elapsed time of 1 second)
+ \end{center}
 \end{frame}
 
 \begin{frame}[t]{Example: Minimum sidelobe code}
@@ -1298,7 +1353,7 @@
 \end{frame}
 
 \begin{frame}{Acknowledgements}
- 
+ Thank you for coming!
 \end{frame}
 
 \begin{frame}{Questions}
