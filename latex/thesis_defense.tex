@@ -1362,119 +1362,160 @@
 
 \appendix
 
-% \begin{frame}{Classical detection with the matched filter}
-%  \begin{block}{Ideal point target}
-%   \begin{itemize}
-%    \item Point target perfectly reflects the transmitted signal
-%    \item Receive attenuated copy of signal after some delay
-%    \item Delay is a function of the target's range
-%   \end{itemize}
-%  \end{block}
-%  \begin{block}{Matched filter properties}
-%   \begin{itemize}
-%    \item Peak of output gives \alert{maximum likelihood estimate} of target's range and amount of attenuation
-%    \item Maximum signal-to-noise ratio (SNR) at peak of all filters
-%   \end{itemize}
-%  \end{block}
-% \end{frame}
+\begin{frame}[t]{Another example: Pseudorandom code}
+ \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
+  \node[left,align=center] at (0,0.5) {Matched\\Filter};
+  \node[right,image] at (0,0) {\includegraphics{longhead_closetrail_mf_rti_4}};
+  \fill[white] (0,-1.125) rectangle (9,-0.8);
+  \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
+  \node[right,image] at (0,-2.8) {\includegraphics{longhead_closetrail_recovered_rti_noise_4}};
+ \end{tikzpicture}
+\end{frame}
 
-% \begin{frame}{Ambiguity between measurement and target}
-%  
-% \end{frame}
+\begin{frame}[t]{Different example: Uncoded}
+ \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
+  \node[left,align=center] at (0,0.5) {Matched\\Filter};
+  \node[right,image] at (0,0) {\includegraphics{longtrail_mf_rti_2}};
+  \fill[white] (0,-1.125) rectangle (9,-0.8);
+  \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
+  \node[right,image] at (0,-2.8) {\includegraphics{longtrail_recovered_rti_noise_2}};
+ \end{tikzpicture}
+\end{frame}
 
-% \begin{frame}{Radar model assumptions}
-%  
-% \end{frame}
+\begin{frame}{Radar model derivation assumptions}
+ \begin{itemize}
+  \item Continuous model holds
+  \item No signal is received from outside the sampled delay window
+  \item Transmitted waveform is piecewise-constant in equal length bauds
+ \end{itemize}
+\end{frame}
 
-% \begin{frame}{Towards ambiguity inversion}
-%  \begin{block}{Ambiguity equation}
-%   Represent matched filter ambiguity as linear system $X$:
-%   \begin{equation*}
-%    x[n,p] = X\left(h[n,p]\right) \quad\longrightarrow \text{Equation is non-invertible.}
-%   \end{equation*}
-%  \end{block}
-%  \begin{block}{Make matched filtering explicit}
-%   Let $A^*$ represent frequency-shifted matched filtering. Then
-%   \begin{equation*}
-%    X(h) = A^*\left(A(h)\right)
-%   \end{equation*}
-%   the ambiguity operation is matched filtering composed with its adjoint. Rewrite the ambiguity equation:
-%   \begin{equation*}
-%    A^*\left(y[m]\right) = A^*\left(A\left(h[n,p]\right)\right)
-%   \end{equation*}
-%  \end{block}
-% \end{frame}
-% 
-% \begin{frame}{Sparsity of non-point targets}
-%  We have the exact equation:
-%  \begin{block}{Reflectivity coefficient equation}
-%   \vspace{-2ex}
-%   \begin{equation*}
-%    h[n,p] = \int_{p \tau}^{(p+1)\tau} \left[h(f, \lambda) e^{2\pi i f \lambda} * b_{p + 1}(f) \right](n\Delta{f}) \dee\lambda
-%   \end{equation*}
-%   \vspace{-2ex}
-%  \end{block}
-%  \begin{itemize}
-%   \item Blurring from wrapped sinc mostly preserves sparsity (evidenced by point target analysis)
-%   \item Integration over delay exactly preserves sparsity
-%  \end{itemize}
-%  \begin{alertblock}{}
-%   If a target has a sparse reflectivity function, we can reasonably expect its reflectivity coefficient representation to be sparse as well.
-%  \end{alertblock}
-% \end{frame}
-% 
-% \begin{frame}{The prox operator}
-%  The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
-%  \begin{equation*}
-%   \mathbf{prox}_{\mu G} (v) = \argmin_{x} \; \left( G(x) + \frac{1}{2\mu} \norm{2}{x - v}^2 \right).
-%  \end{equation*}
-%  \begin{exampleblock}{Projection onto a set}
-%   If $G(x)$ is the indicator function for a closed convex set $\mathcal{C}$,
-%   \begin{equation*}
-%    G(x) = \begin{cases}
-%            0 & x \in \mathcal{C}\\
-%            \infty & x \notin \mathcal{C}
-%           \end{cases}
-%   \end{equation*}
-%   $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
-%  \end{exampleblock}
-% \end{frame}
+\begin{frame}{The prox operator}
+ The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
+ \begin{equation*}
+  \mathbf{prox}_{\mu G} (v) = \argmin_{x} \; \left( G(x) + \frac{1}{2\mu} \norm{2}{x - v}^2 \right).
+ \end{equation*}
+ \begin{exampleblock}{Projection onto a set}
+  If $G(x)$ is the indicator function for a closed convex set $\mathcal{C}$,
+  \begin{equation*}
+   G(x) = \begin{cases}
+           0 & x \in \mathcal{C}\\
+           \infty & x \notin \mathcal{C}
+          \end{cases}
+  \end{equation*}
+  $\mathbf{prox}_{G}(v)$ is projection of $v$ onto $\mathcal{C}$.
+ \end{exampleblock}
+\end{frame}
 
-% \begin{frame}{Linearized ADMM}
-%  
-% \end{frame}
+\begin{frame}{Accelerated proximal gradient method}
+ \begin{align*}
+  \text{Set step size} && \mu^{k+1}\\
+  && \gamma &\coloneqq \mu^{k}/\mu^{k+1}\\
+  \text{Acceleration parameter} && t^{k+1} &\coloneqq \frac{1}{2} + \frac{1}{2}\sqrt{1 + 4\gamma \left(t^{k}\right)^2}\\
+  && \theta &\coloneqq \left(t^{k} - 1\right)/ t^{k+1}\\
+  \text{Acceleration step} && w^{k+1} &\coloneqq x^{k} + \theta\left(x^{k} - x^{k-1}\right)\\
+  \text{Gradient step} && z^{k+1} &\coloneqq w^{k+1} - \mu^{k+1} \nabla F\left(w^{k}\right)\\
+  \text{Prox step} && x^{k+1} &\coloneqq \mathbf{prox}_{\mu G}\left(z^{k+1}\right)
+ \end{align*}
+\end{frame}
 
-% \begin{frame}{Accelerated proximal gradient method}
-%  
-% \end{frame}
+\begin{frame}{Waveform inversion equation}
+ Rewrite matched filter using the model in terms of solution $h$:
+ \begin{align*}
+  A^*(y) &= A^*\left(A(h) + y - A(h)\right)\\
+  &= A^*A(h) + A^*\left(y - A(h)\right)\\
+  &= \left(\frac{1}{N}I + A^*A - \frac{1}{N}I\right)(h) + A^*\left(y - A(h)\right)\\
+  &= \frac{1}{N}h + \left(A^*A - \frac{1}{N}I\right)(h) + A^*\left(y - A(h)\right)
+ \end{align*}
+ Ambiguity function is $A^*A$, and sidelobes are $A^*A - \frac{1}{N}I$.
+ 
+ The matched filter is usually scaled by a factor of $\sqrt{N}$, so the waveform inversion result with sidelobes removed is given by:
+ \begin{equation*}
+  \frac{1}{\sqrt{N}}h + \sqrt{N}A^*\left(y - A(h)\right)
+ \end{equation*}
+ (sparse result plus matched filtered noise)
+\end{frame}
 
-% \subsection{Implementation}
-%
-% Why prox algorithms?
-% 
-% \begin{frame}{FISTA with radar model}
-%  Compute model with FFTW and Cython\\
-%  Adaptive step size
-% \end{frame}
-% 
-% \begin{frame}{Waveform inversion}
-%  l1-rls gives sparse solution\\
-%  Leaves unmodeled noise\\
-%  Matched filter the unmodeled noise\\
-%  Add noise back to sparse solution = sidelobe removal\\
-%  Ambiguity function is $A^*A$, so sidelobes are $(A^*A - I)$
-% \end{frame}
-% 
-% \begin{frame}{Sparse solution}
-%  delay-frequency figure
-% \end{frame}
-% 
-% \begin{frame}{Unmodeled noise}
-%  delay-frequency figure
-% \end{frame}
-% 
-% \begin{frame}{Sidelobe removal}
-%  delay-frequency figure
-% \end{frame}
+\begin{frame}[t]{Sparse solution}
+ \centering
+ Pseudorandom code
+ \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
+  \node[left,align=center] at (0,0.5) {Matched\\Filter};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_mf_rti_4}};
+  \fill[white] (0,-1.125) rectangle (9,-0.8);
+  \node[left,align=center] at (0,-2.3) {Sparse\\Solution};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_4}};
+ \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Unmodeled noise}
+ \centering
+ Pseudorandom code
+ \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
+  \node[left,align=center] at (0,0.5) {Sparse\\Solution};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_recovered_rti_4}};
+  \fill[white] (0,-1.125) rectangle (9,-0.8);
+  \node[left,align=center] at (0,-2.3) {Unmodeled\\Noise};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_noise_4}};
+ \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Sidelobe removal}
+ \centering
+ Pseudorandom code
+ \begin{tikzpicture}
+  \tikzstyle{every node}=[minimum width=\widthof{Waveform}+2ex]
+  \node[left,align=center] at (0,0.5) {Sparse\\Solution};
+  \node[right,image] at (0,0) {\includegraphics{head_and_flare_recovered_rti_4}};
+  \fill[white] (0,-1.125) rectangle (9,-0.8);
+  \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
+  \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_4}};
+ \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Simulation parameters}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \begin{block}{Point target simulation}
+   \begin{itemize}
+    \item 3 targets at 100 km range:\\
+    \vspace{1ex}
+    \begin{tabular}{cc}
+     Reflectivity & Range rate\\\hline
+     20 & 0 km/s\\
+     10 & 45 km/s\\
+     10 & 50 km/s
+    \end{tabular}
+    \vspace{1ex}
+    \item Mean noise power of 5
+    \item 51-baud minimum sidelobe code
+   \end{itemize}
+  \end{block}
+  \column{0.5\textwidth}
+  \includegraphics[width=\textwidth]{simulation}
+ \end{columns}
+\end{frame}
+
+\begin{frame}{Simulation results}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \includegraphics{three_targets_matched}
+  \column{0.5\textwidth}
+  \includegraphics{three_targets_cs}
+ \end{columns}
+\end{frame}
+
+\begin{frame}{Jicamarca flare}
+ \begin{itemize}
+  \item Waveform inversion of a meteor head echo and flare
+  \item Minimum sidelobe code data from Jicamarca experiment
+  \item 5 pulses around the event
+ \end{itemize}
+ \includegraphics[width=\textwidth]{jicamarca_flare_cs}
+\end{frame}
 
 \end{document}
