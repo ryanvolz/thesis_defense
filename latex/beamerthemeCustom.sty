@@ -8,6 +8,24 @@
 
 \usefonttheme{structurebold}
 
+% redefine section and subsection pages
+\setbeamertemplate{section page}
+{
+  \begin{centering}
+    \begin{beamercolorbox}[sep=12pt,center]{part title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+\setbeamertemplate{subsection page}
+{
+  \begin{centering}
+    \begin{beamercolorbox}[sep=8pt,center]{part title}
+      \usebeamerfont{subsection title}\insertsubsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+
 % remove navigation bar
 \setbeamertemplate{navigation symbols}{}
 

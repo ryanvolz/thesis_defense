@@ -1,0 +1,42 @@
+\ProvidesPackage{beamerinnerthemesubsubsectionframetitle}
+
+\RequirePackage{etoolbox}
+
+\mode<presentation>
+
+% set subsubsection as frametitle whenever a new non-outline frame is defined
+\makeatletter
+\addtobeamertemplate{frametitle}{}{%
+ \protecting{
+  \ifdefstring{\beamer@frametitle}{Outline}{}{%
+   \ifltxcounter{frame:\insertframenumber}{}{%
+    \newcounter{frame:\insertframenumber}%
+    % set subsubsection counter to (framenumber - 1) so it gets incremented to
+    % framenumber by subsubsection command
+    \setcounter{subsubsection}{\value{framenumber}-1}%
+    \ifcsempty{insertframesubtitle}{%
+     \subsubsection{%
+      \insertframetitle%
+     }\par%
+    }%
+    {%
+     \subsubsection{%
+      \insertframetitle: \insertframesubtitle%
+     }\par%
+    }%
+   }%
+  }%
+ }%
+}
+\makeatother
+
+% put frame number before subsubsection name in toc
+\setbeamertemplate{subsubsection in toc}{%
+ \leavevmode\normalsize\usebeamerfont{subsection in toc}\leftskip=5em%
+ \usebeamerfont{subsubssection in toc}%
+ \hspace{-1.5em}\makebox[1.5em][l]{\inserttocsubsubsectionnumber\hfill}%
+ \inserttocsubsubsection\par
+}
+  
+\mode
+<all>

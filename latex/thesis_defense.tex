@@ -1,18 +1,10 @@
 \documentclass{beamer}
 % beamer settings
 \usetheme{Custom}
+\useinnertheme{subsubsectionframetitle}
 \usefonttheme{professionalfonts} % make beamer work best with unicode-math
 % \usefonttheme[stillsansserifsmall,stillsansseriflarge]{serif}
 \setbeamercovered{transparent}
-
-% Delete this, if you do not want the table of contents to pop up at
-% the beginning of each subsection:
-\AtBeginSubsection[]
-{
-  \begin{frame}<beamer>{Outline}
-    \tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
-  \end{frame}
-}
 
 % microtype for improved spacing and readability
 \usepackage{microtype}
@@ -76,6 +68,7 @@
 \usepackage{mathtools} % for math stuff not provided by AMSmath
 \usepackage{multimedia} % movies
 \usepackage{appendixnumberbeamer} % do not include appendix slides in total frame number
+\usepackage{multicol}
 
 % hyperref after everything else
 \usepackage{hyperref}
@@ -87,6 +80,18 @@
 \DeclarePairedDelimiter{\nrm}{\lVert}{\rVert}
 %\DeclarePairedDelimiterX{\innerprod}[2]{\langle}{\rangle}{#1, #2}
 \usepackage{mathcommands-private}
+
+% allow changing the margin for single slides
+\newenvironment{changemargin}[2]{%
+ \begin{list}{}{%
+  \setlength{\topsep}{0pt}%
+  \setlength{\leftmargin}{#1}%
+  \setlength{\rightmargin}{#2}%
+  \setlength{\listparindent}{\parindent}%
+  \setlength{\itemindent}{\parindent}%
+  \setlength{\parsep}{\parskip}%
+ }%
+\item[]}{\end{list}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -120,9 +125,11 @@
 \end{frame}
 }
 
-\section*{Introduction and Motivation}
+\AtBeginSubsection[]{}
 
-\subsection*{The Ionosphere}
+\section{Introduction and Motivation}
+
+\subsection{The Ionosphere}
 
 \begin{frame}{The ionosphere}
  \includegraphics[width=\textwidth]{atmospheric_regions_with_radiation}
@@ -238,7 +245,7 @@
  \includegraphics[width=0.75\textwidth]{ImpactPlasmaExpansion}
 \end{frame}
 
-\subsection*{Radar Measurements}
+\subsection{Radar Measurements}
 
 \begin{frame}{Measuring the ionosphere}
  \begin{definition}
@@ -366,7 +373,7 @@
  \end{columns}
 \end{frame}
 
-\subsection*{Sparsity}
+\subsection{Sparsity}
 
 \begin{frame}{A way forward: sparsity}
  Radar targets are typically sparse in range and frequency!
@@ -457,7 +464,7 @@
  \end{columns}
 \end{frame}
 
-\subsection*{}
+\subsection{Contributions}
 
 \begin{frame}<1-6>[label=contributions]{Contributions}
  In order to enable \alert{flexible high-resolution measurements} of ionospheric plasma phenomena, including interfering and range-spread targets, I made the following contributions:
@@ -479,8 +486,15 @@
 \end{frame}
 
 \begin{frame}{Outline}
- \tableofcontents[hideallsubsections]
+ \tableofcontents[sectionstyle=shaded/show,hideallsubsections,subsubsectionstyle=hide]
 \end{frame}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,subsectionstyle=show/shaded/hide,subsubsectionstyle=hide]
+  \end{frame}
+}
 
 \section{Radar Background}
 \subsection{Pulse Encoding/Decoding}
@@ -1313,9 +1327,12 @@
 \end{frame}
 
 \section{Conclusion}
+\AtBeginSubsection[]{}
+
+\subsection{Summary}
 
 \begin{frame}<beamer>{Outline}
- \tableofcontents[currentsection,hideallsubsections]
+ \tableofcontents[currentsection,hideallsubsections,subsubsectionstyle=hide]
 \end{frame}
 
 \begin{frame}{Benefits of waveform inversion}
@@ -1338,7 +1355,11 @@
  \end{columns}
 \end{frame}
 
+\subsection{Contributions}
+
 \againframe<7->{contributions}
+
+\subsection{Further Research}
 
 \begin{frame}{Further research}
  \begin{block}{Near-universal radar measurements}
@@ -1352,15 +1373,37 @@
  \end{block}
 \end{frame}
 
+\subsection{Acknowledgements}
+
 \begin{frame}{Acknowledgements}
  Thank you for coming!
 \end{frame}
 
+\subsection{Questions}
+
 \begin{frame}{Questions}
- \tableofcontents
+ \begin{changemargin}{-0.75cm}{-0.75cm}
+ \vspace{-0.5cm}
+ \begin{multicols}{3}
+  \setbeamerfont{section in toc}{size*={5pt}{6.5}}
+  \setbeamerfont{subsection in toc}{size*={5pt}{6.5}}
+  \setbeamerfont{subsubsection in toc}{size*={4.25pt}{6.5}}
+  \tableofcontents
+ \end{multicols}
+ \end{changemargin}
 \end{frame}
 
 \appendix
+
+\AtBeginSubsection[]{}
+
+\section{Appendix}
+
+\begin{frame}<beamer>
+ \sectionpage
+\end{frame}
+
+\subsection{More Examples}
 
 \begin{frame}[t]{Another example: Pseudorandom code}
  \begin{tikzpicture}
@@ -1384,13 +1427,54 @@
  \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Radar model derivation assumptions}
+\begin{frame}{Jicamarca flare}
  \begin{itemize}
-  \item Continuous model holds
-  \item No signal is received from outside the sampled delay window
-  \item Transmitted waveform is piecewise-constant in equal length bauds
+  \item Waveform inversion of a meteor head echo and flare
+  \item Minimum sidelobe code data from Jicamarca experiment
+  \item 5 pulses around the event:
  \end{itemize}
+ \includegraphics[width=\textwidth]{jicamarca_flare_cs}
 \end{frame}
+
+\subsection{Simulation}
+
+\begin{frame}{Simulation parameters}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \begin{block}{Point target simulation}
+   \begin{itemize}
+    \item 3 targets at 100 km range:\\
+    \vspace{1ex}
+    \begin{tabular}{cc}
+     Reflectivity & Range rate\\\hline
+     20 & 0 km/s\\
+     10 & 45 km/s\\
+     10 & 50 km/s
+    \end{tabular}
+    \vspace{1ex}
+    \item Mean noise power of 5
+    \item 51-baud minimum sidelobe code
+   \end{itemize}
+  \end{block}
+  \column{0.5\textwidth}
+  \includegraphics[width=\textwidth]{simulation}
+ \end{columns}
+\end{frame}
+
+\begin{frame}{Simulation results}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \centering
+  Matched Filter
+  \includegraphics{three_targets_matched}
+  \column{0.5\textwidth}
+  \centering
+  Waveform Inversion
+  \includegraphics{three_targets_cs}
+ \end{columns}
+\end{frame}
+
+\subsection{Proximal Methods}
 
 \begin{frame}{The prox operator}
  The proximal operator, or \alert{prox operator}, is defined for non-smooth $G(x)$ as
@@ -1421,21 +1505,22 @@
  \end{align*}
 \end{frame}
 
-\begin{frame}{Waveform inversion equation}
- Rewrite matched filter using the model in terms of solution $h$:
- \begin{align*}
-  A^*(y) &= A^*\left(A(h) + y - A(h)\right)\\
-  &= A^*A(h) + A^*\left(y - A(h)\right)\\
-  &= \left(\frac{1}{N}I + A^*A - \frac{1}{N}I\right)(h) + A^*\left(y - A(h)\right)\\
-  &= \frac{1}{N}h + \left(A^*A - \frac{1}{N}I\right)(h) + A^*\left(y - A(h)\right)
- \end{align*}
- Ambiguity function is $A^*A$, and sidelobes are $A^*A - \frac{1}{N}I$.
- 
- The matched filter is usually scaled by a factor of $\sqrt{N}$, so the waveform inversion result with sidelobes removed is given by:
- \begin{equation*}
-  \frac{1}{\sqrt{N}}h + \sqrt{N}A^*\left(y - A(h)\right)
- \end{equation*}
- (sparse result plus matched filtered noise)
+\subsection{Sidelobe Removal}
+
+\begin{frame}{Sidelobe math}
+ \begin{itemize}
+  \item The function $A^*A$ operating on a target scene $h$ models the matched filter result of measuring that target.
+  \item The sidelobes are the off-diagonal results of the function, given by the operation $A^*A - \frac{1}{N}I$.
+  \item So to remove sidelobes from the matched filtered data $A^*(y)$ using the approximating sparse solution $h$, we must calculate:
+  \begin{equation*}
+   A^*(y) - \left(A^*A - \frac{1}{N}I\right)(h) = A^*\left(y - A(h)\right) + \frac{1}{N}h
+  \end{equation*}
+  \item The standard matched filter is usually scaled by a factor of $\sqrt{N}$ relative to the model, so the equivalent waveform inversion result with sidelobes removed is given by:
+  \begin{equation*}
+   \frac{1}{\sqrt{N}}h + \sqrt{N}A^*\left(y - A(h)\right)
+  \end{equation*}
+  (sparse result plus matched filtered noise)
+ \end{itemize} 
 \end{frame}
 
 \begin{frame}[t]{Sparse solution}
@@ -1464,7 +1549,7 @@
  \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Sidelobe removal}
+\begin{frame}{Sidelobe removal as sparse plus noise}
  \centering
  Pseudorandom code
  \begin{tikzpicture}
@@ -1472,50 +1557,9 @@
   \node[left,align=center] at (0,0.5) {Sparse\\Solution};
   \node[right,image] at (0,0) {\includegraphics{head_and_flare_recovered_rti_4}};
   \fill[white] (0,-1.125) rectangle (9,-0.8);
-  \node[left,align=center] at (0,-2.3) {Waveform\\Inversion};
+  \node[left,align=center] at (0,-2.3) {Sparse\\plus\\Noise};
   \node[right,image] at (0,-2.8) {\includegraphics{head_and_flare_recovered_rti_noise_4}};
  \end{tikzpicture}
-\end{frame}
-
-\begin{frame}{Simulation parameters}
- \begin{columns}
-  \column{0.5\textwidth}
-  \begin{block}{Point target simulation}
-   \begin{itemize}
-    \item 3 targets at 100 km range:\\
-    \vspace{1ex}
-    \begin{tabular}{cc}
-     Reflectivity & Range rate\\\hline
-     20 & 0 km/s\\
-     10 & 45 km/s\\
-     10 & 50 km/s
-    \end{tabular}
-    \vspace{1ex}
-    \item Mean noise power of 5
-    \item 51-baud minimum sidelobe code
-   \end{itemize}
-  \end{block}
-  \column{0.5\textwidth}
-  \includegraphics[width=\textwidth]{simulation}
- \end{columns}
-\end{frame}
-
-\begin{frame}{Simulation results}
- \begin{columns}
-  \column{0.5\textwidth}
-  \includegraphics{three_targets_matched}
-  \column{0.5\textwidth}
-  \includegraphics{three_targets_cs}
- \end{columns}
-\end{frame}
-
-\begin{frame}{Jicamarca flare}
- \begin{itemize}
-  \item Waveform inversion of a meteor head echo and flare
-  \item Minimum sidelobe code data from Jicamarca experiment
-  \item 5 pulses around the event
- \end{itemize}
- \includegraphics[width=\textwidth]{jicamarca_flare_cs}
 \end{frame}
 
 \end{document}
