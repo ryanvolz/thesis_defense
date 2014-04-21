@@ -6,7 +6,6 @@ from bunch import Bunch
 
 import echolect as el
 import radarmodel
-import spyalg
 
 mfblksize = 5
 mfvoters = [1, 2, 4]

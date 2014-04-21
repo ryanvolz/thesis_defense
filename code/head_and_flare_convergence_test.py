@@ -6,7 +6,7 @@ from bunch import Bunch
 
 import echolect as el
 import radarmodel
-import spyalg
+import prx
 
 basefilename = 'head_and_flare'
 with open(basefilename + '.pkl', 'rb') as f:
@@ -44,13 +44,13 @@ A = As[k % len(As)]
 Astar = Astars[k % len(Astars)]
 x0 = np.zeros(A.inshape, A.indtype)
 
-sol0 = spyalg.standard_probs.l1rls_proxgrad(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=None, moreinfo=True)
-sol1 = spyalg.standard_probs.l1rls_proxgradaccel(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=None, restart=False, moreinfo=True)
-sol2 = spyalg.standard_probs.l1rls_proxgradaccel(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=None, restart=True, moreinfo=True)
-sol3 = spyalg.standard_probs.l1rls_proxgradaccel(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=0.5, expand=1.25, restart=True, moreinfo=True)
+sol0 = prx.standard_probs.l1rls_proxgrad(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=None, moreinfo=True)
+sol1 = prx.standard_probs.l1rls_proxgradaccel(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=None, restart=False, moreinfo=True)
+sol2 = prx.standard_probs.l1rls_proxgradaccel(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=None, restart=True, moreinfo=True)
+sol3 = prx.standard_probs.l1rls_proxgradaccel(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=0.5, expand=1.25, restart=True, moreinfo=True)
 
-sol4 = spyalg.standard_probs.l1rls_admmlin(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=0.5, expand=1.25, pen=1.0, residgap=2, penfactor=1.5, relax=1.0, moreinfo=True)
-sol5 = spyalg.standard_probs.l1rls_pdhg(A, Astar, y, lmbda, x0, step_p=1.0, step_d=1.0, moreinfo=True)
+sol4 = prx.standard_probs.l1rls_admmlin(A, Astar, y, lmbda, x0, stepsize=1.0, backtrack=0.5, expand=1.25, pen=1.0, residgap=2, penfactor=1.5, relax=1.0, moreinfo=True)
+sol5 = prx.standard_probs.l1rls_pdhg(A, Astar, y, lmbda, x0, step_p=1.0, step_d=1.0, moreinfo=True)
 
 print('proxgrad: {0} iterations'.format(sol0['numits']))
 print('proxgradaccel: {0} iterations'.format(sol1['numits']))

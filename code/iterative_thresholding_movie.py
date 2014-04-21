@@ -5,7 +5,7 @@ from matplotlib import gridspec
 from mpl_toolkits import axes_grid1
 import itertools
 
-import spyalg
+import prx
 
 params = {'font.size': 10,
           'font.family': 'sans-serif',
@@ -126,8 +126,8 @@ def ist():
     for k in xrange(1000):
         z = y - np.dot(A, xhat)
         Asz = np.dot(A.T, z)
-        thresh = lmbda*spyalg.thresholding.medestnoise(Asz)
-        xnew = spyalg.thresholding.softthresh(xhat + Asz, thresh).real
+        thresh = lmbda*prx.thresholding.medestnoise(Asz)
+        xnew = prx.thresholding.softthresh(xhat + Asz, thresh).real
         
         yield k, xhat, z, Asz, thresh, xnew
         

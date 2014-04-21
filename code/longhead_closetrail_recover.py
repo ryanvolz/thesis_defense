@@ -6,7 +6,7 @@ from bunch import Bunch
 
 import echolect as el
 import radarmodel
-import spyalg
+import prx
 
 basefilename = 'longhead_closetrail'
 with open(basefilename + '.pkl', 'rb') as f:
@@ -48,7 +48,7 @@ for p in xrange(data.vlt.shape[0]):
     y = data.vlt[p]
     A = As[p % len(As)]
     Astar = Astars[p % len(Astars)]
-    x = spyalg.l1rls(A, Astar, y, lmbda=lmbda, x0=x0s[p % len(As)], printrate=100)
+    x = prx.l1rls(A, Astar, y, lmbda=lmbda, x0=x0s[p % len(As)], printrate=100)
     
     nz = Astar(y - A(x))
     

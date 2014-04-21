@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-import spyalg
+import prx
 
 params = {'lines.markersize': 2,
           'lines.linewidth': 0.45}
@@ -61,8 +61,8 @@ plotit(xhat, 'ist/ist_x000.png')
 for k in xrange(1000):
     z = y - np.dot(A, xhat)
     Asz = np.dot(A.T, z)
-    thresh = lmbda*spyalg.thresholding.medestnoise(Asz)
-    xnew = spyalg.thresholding.softthresh(xhat + Asz, thresh).real
+    thresh = lmbda*prx.thresholding.medestnoise(Asz)
+    xnew = prx.thresholding.softthresh(xhat + Asz, thresh).real
     if k % 1 == 0:
         plotz(z, 'ist/ist_z{0:03d}.png'.format(k))
         plotit(Asz, 'ist/ist_Asz{0:03d}.png'.format(k))

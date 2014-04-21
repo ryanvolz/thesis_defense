@@ -5,7 +5,7 @@ import cPickle
 
 import echolect as el
 import radarmodel
-import spyalg
+import prx
 
 with open('three_targets_data.pkl', 'rb') as f:
     store = cPickle.load(f)
@@ -30,7 +30,7 @@ h_matched = filt(y)[:, filt.nodelay]
 
 # compressed sensing recovery
 x0 = np.zeros(A.inshape, A.indtype)
-x1 = spyalg.l1rls(A, Astar, y, lmbda=.125, x0=x0, printrate=10)
+x1 = prx.l1rls(A, Astar, y, lmbda=.125, x0=x0, printrate=10)
 
 x = x1/np.sqrt(n) + Astar(y - A(x1))*np.sqrt(n)
 
