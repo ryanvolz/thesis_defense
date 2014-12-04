@@ -1,4 +1,4 @@
-Python code found in the 'code' directory is licensed under the GPLv3. The terms of this license are provided as 'LICENSE.GPLv3'.
+Python code found in the 'code' directory is licensed under the BSD 3-Clause ("BSD New") license. The terms of this license are provided as 'LICENSE.BSD'.
 
 The images in the 'figures' directory come from a variety of sources, some copyrighted. Copyrighted images used in the spirit of fair use are included under the 'fairuse' subdirectory and are provided without a license. Images that are used on the basis of an open license are included in the 'open' subdirectory. Unless indicated by an accompanying '.lic' file describing the license, these images are in the public domain. Finally, all remaining images are original and are released to the public domain under the CC0 license provided as 'LICENSE.CC0'. Code for producing many of the images can be found in the 'code' directory.
 

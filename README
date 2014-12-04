@@ -1,4 +1,4 @@
-These are the source files for the my Ph.D. thesis defense presentation.
+These are the source files for my Ph.D. thesis defense presentation.
 
 To properly view the presentation (and not compile/create it), you only need the main presentation pdf 'latex/thesis_defense.pdf' and the videos under the 'movies' directory. The presentation pdf will search for these video files in a 'movies' subdirectory relative to the location of the pdf (e.g. if presentation is '/dir/thesis_defense.pdf', movies should be in '/dir/movies/'). The videos are known to work with KDE's Okular pdf viewer using the VLC Phonon plugin, but other viewers have not been tested.
 
